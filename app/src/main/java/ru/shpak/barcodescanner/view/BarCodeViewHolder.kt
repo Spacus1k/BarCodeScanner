@@ -23,7 +23,11 @@ class BarCodeViewHolder private constructor(itemView: View) : RecyclerView.ViewH
             )
     }
 
-     val barCodeView: TextView = itemView.barCode
-     val dateView: TextView = itemView.date
+    private val barCodeView: TextView = itemView.barCode
+    private val dateView: TextView = itemView.date
 
+    fun bind(barCode: BarCode) {
+        barCodeView.text = barCode.barCode
+        dateView.text = barCode.date
+    }
 }
