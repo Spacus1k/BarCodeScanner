@@ -12,7 +12,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private val adapter = BarCodeAdapter()
     private val viewModel = MainViewModel()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
