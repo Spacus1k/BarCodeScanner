@@ -4,19 +4,30 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.shpak.barcodescanner.model.BarCode
 
-class BarCodeAdapter(private val listBarCode: List<BarCode>):
+class BarCodeAdapter :
     RecyclerView.Adapter<BarCodeViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):BarCodeViewHolder =
+    private var list: MutableList<BarCode> = mutableListOf()
+
+    fun clear() {
+        list.clear()
+        notifyDataSetChanged()
+    }
+
+    fun updateData(barCodeList: Collection<BarCode>){
+        list.addAll(barCodeList)
+        notifyDataSetChanged()
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BarCodeViewHolder =
         BarCodeViewHolder.createViewHolder(parent)
 
     override fun onBindViewHolder(holder: BarCodeViewHolder, position: Int) {
-        val barCode: BarCode  = listBarCode[position]
-        holder.barCodeView.text = barCode.barCode
-        holder.dateView.text = barCode.date
+        holder.bind(list[position])
     }
 
     override fun getItemCount(): Int {
-        return listBarCode.size
+        return list.size
     }
+
 }
