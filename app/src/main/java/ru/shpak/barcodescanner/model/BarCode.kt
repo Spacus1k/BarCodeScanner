@@ -8,4 +8,5 @@ data class BarCode(
     val id: Long? = null,
     @ColumnInfo(name = "barCode") var barCode: String,
     @ColumnInfo(name = "date") val date: String
+
 )

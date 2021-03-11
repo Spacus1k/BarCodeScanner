@@ -13,4 +13,5 @@ abstract class AppDatabase : RoomDatabase() {
     }
 
     abstract fun barCodeDao(): BarCodeDao
+
 }
