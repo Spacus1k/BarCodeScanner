@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.shpak.barcodescanner.R
-import ru.shpak.barcodescanner.utils.Util
 import ru.shpak.barcodescanner.view.BarCodeAdapter
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -28,11 +27,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         buttonSwapLists.setOnClickListener(this)
     }
 
+
+
     override fun onClick(view: View?) {
-        when (view?.id) {
-            R.id.buttonSwapLists -> Util.swapLists(
-                barCodes.adapter as BarCodeAdapter
-            )
-        }
     }
 }
