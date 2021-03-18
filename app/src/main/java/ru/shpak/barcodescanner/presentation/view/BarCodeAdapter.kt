@@ -10,6 +10,7 @@ class BarCodeAdapter :
     private var list: List<BarCode> = mutableListOf()
 
     fun updateData(barCodeList: List<BarCode>) {
+        list = barCodeList
         notifyDataSetChanged()
     }
 
