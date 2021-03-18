@@ -1,4 +1,4 @@
-package ru.shpak.barcodescanner.view
+package ru.shpak.barcodescanner.presentation.view
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,12 +9,15 @@ class BarCodeAdapter :
 
     private var list: MutableList<BarCode> = mutableListOf()
 
-    fun clear() {
+    fun updateData(barCodeList: List<BarCode>) {
         list.clear()
+<<<<<<< HEAD:app/src/main/java/ru/shpak/barcodescanner/view/BarCodeAdapter.kt
         notifyDataSetChanged()
     }
 
     fun updateData(barCodeList: Collection<BarCode>){
+=======
+>>>>>>> 189f547 (added database, ViewModel, Interactor, AsuncTask-functions):app/src/main/java/ru/shpak/barcodescanner/presentation/view/BarCodeAdapter.kt
         list.addAll(barCodeList)
         notifyDataSetChanged()
     }

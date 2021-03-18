@@ -42,12 +42,23 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.3.0'
-    //View
+
+    //Recycler
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
+    //Zxing
     implementation 'me.dm7.barcodescanner:zxing:1.9.13'
-    //Database
+
+    //Room
     def room_version = "2.2.6" //
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
+
+   //Provider
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0"
+
+    //LiveData
+    implementation "android.arch.lifecycle:extensions:1.1.1"
+
 }

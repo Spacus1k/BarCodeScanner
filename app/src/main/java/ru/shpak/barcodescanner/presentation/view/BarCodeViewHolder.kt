@@ -1,4 +1,4 @@
-package ru.shpak.barcodescanner.view
+package ru.shpak.barcodescanner.presentation.view
 
 import android.view.LayoutInflater
 import android.view.View
@@ -27,6 +27,7 @@ class BarCodeViewHolder private constructor(itemView: View) : RecyclerView.ViewH
     private val dateView: TextView = itemView.date
 
     fun bind(barCode: BarCode) {
+
         barCodeView.text = barCode.barCode
         dateView.text = barCode.date
     }
