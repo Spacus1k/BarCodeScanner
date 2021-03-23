@@ -17,10 +17,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        viewModel.barCodes.observe(this) { barCodes ->
-            adapter.updateData(barCodes)
-        }
-
         initBarCodeRecycleView()
         initButton()
         initObservers()

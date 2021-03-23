@@ -11,10 +11,6 @@ interface BarCodeDao {
     @Query("SELECT * FROM barcode")
     fun getAll(): List<BarCode>
 
-    @Query("SELECT * FROM barcode WHERE  id = :id")
-    fun getById(id: Long): BarCode
-
-
     @Insert
     fun insert(barCode: BarCode)
 
