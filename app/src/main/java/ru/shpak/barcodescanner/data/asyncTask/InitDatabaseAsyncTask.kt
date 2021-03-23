@@ -12,7 +12,7 @@ class InitDatabaseAsyncTask : AsyncTask<Unit, Unit, AppDatabase>() {
         return Room.databaseBuilder(
             App.getApplicationContext(),
             AppDatabase::class.java,
-            "barcode"
+            AppDatabase.NAME_DATABASE
         )
             .build()
     }

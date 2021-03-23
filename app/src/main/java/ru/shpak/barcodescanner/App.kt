@@ -3,8 +3,10 @@ package ru.shpak.barcodescanner
 import android.app.Application
 import ru.shpak.barcodescanner.data.AppDatabase
 import ru.shpak.barcodescanner.data.asyncTask.InitDatabaseAsyncTask
+import ru.shpak.barcodescanner.utils.start
 
 class App : Application() {
+
     private lateinit var _database: AppDatabase
     val database: AppDatabase get() = _database
 
@@ -15,9 +17,11 @@ class App : Application() {
             return instance
         }
     }
+
     override fun onCreate() {
         super.onCreate()
         instance = this
-       _database =  InitDatabaseAsyncTask().execute().get()
+
+        _database = InitDatabaseAsyncTask().start()
     }
 }

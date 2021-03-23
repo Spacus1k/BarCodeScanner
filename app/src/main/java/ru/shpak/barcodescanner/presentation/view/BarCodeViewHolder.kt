@@ -27,7 +27,6 @@ class BarCodeViewHolder private constructor(itemView: View) : RecyclerView.ViewH
     private val dateView: TextView = itemView.date
 
     fun bind(barCode: BarCode) {
-
         barCodeView.text = barCode.barCode
         dateView.text = barCode.date
     }

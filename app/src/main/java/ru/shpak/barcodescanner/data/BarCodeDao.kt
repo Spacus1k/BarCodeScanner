@@ -9,7 +9,7 @@ import ru.shpak.barcodescanner.model.BarCode
 @Dao
 interface BarCodeDao {
     @Query("SELECT * FROM barcode")
-    fun getAll(): MutableList<BarCode>
+    fun getAll(): List<BarCode>
 
     @Query("SELECT * FROM barcode WHERE  id = :id")
     fun getById(id: Long): BarCode

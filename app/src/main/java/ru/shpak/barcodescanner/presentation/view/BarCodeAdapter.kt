@@ -7,18 +7,10 @@ import ru.shpak.barcodescanner.model.BarCode
 class BarCodeAdapter :
     RecyclerView.Adapter<BarCodeViewHolder>() {
 
-    private var list: MutableList<BarCode> = mutableListOf()
+    private var list: List<BarCode> = mutableListOf()
 
     fun updateData(barCodeList: List<BarCode>) {
-        list.clear()
-<<<<<<< HEAD:app/src/main/java/ru/shpak/barcodescanner/view/BarCodeAdapter.kt
-        notifyDataSetChanged()
-    }
-
-    fun updateData(barCodeList: Collection<BarCode>){
-=======
->>>>>>> 189f547 (added database, ViewModel, Interactor, AsuncTask-functions):app/src/main/java/ru/shpak/barcodescanner/presentation/view/BarCodeAdapter.kt
-        list.addAll(barCodeList)
+        list = barCodeList
         notifyDataSetChanged()
     }
 
@@ -29,8 +21,5 @@ class BarCodeAdapter :
         holder.bind(list[position])
     }
 
-    override fun getItemCount(): Int {
-        return list.size
-    }
-
+    override fun getItemCount() = list.size
 }

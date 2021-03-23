@@ -17,12 +17,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        viewModel.barCodes.observe(this) { barCodes ->
-            adapter.updateData(barCodes)
-        }
-
         initBarCodeRecycleView()
         initButton()
+        initObservers()
     }
 
     private fun initBarCodeRecycleView() {
@@ -31,6 +28,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun initButton() {
+        addButton.setOnClickListener(this)
+    }
+
+    private fun initObservers() {
+        viewModel.barCodes.observe(this) { barCodes ->
+            adapter.updateData(barCodes)
+        }
     }
 
     override fun onClick(view: View?) {

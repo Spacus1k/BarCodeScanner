@@ -1,25 +1,28 @@
 package ru.shpak.barcodescanner.domain
 
-import ru.shpak.barcodescanner.App
-import ru.shpak.barcodescanner.data.asyncTask.DeleteFromDatabaseAsyncTask
-import ru.shpak.barcodescanner.data.asyncTask.GetListAsyncTask
-import ru.shpak.barcodescanner.data.asyncTask.InsertInDatabaseAsyncTask
 import ru.shpak.barcodescanner.model.BarCode
-import ru.shpak.barcodescanner.utils.start
 
-class BarCodeInteractor: Interactor{
+// TODO: add docs
 
-    private val database = App.getApplicationContext().getDatabase()
+/**
+ * The Interactor which used for connection with bard codes data
+ * */
+interface BarCodeInteractor {
 
-     override fun addBarCode(barCode: BarCode) {
-        InsertInDatabaseAsyncTask(database, barCode).start()
-    }
+    /**
+     * @param barCode - the bar code which will be added
+     * */
+    fun addBarCode(barCode: BarCode)
 
-    override fun deleteBarCode(barCode: BarCode) {
-        DeleteFromDatabaseAsyncTask(barCode).start()
-    }
+    /**
+     *@param barCode - the bar code which will be deleted
+     *  */
 
-    override fun getBarCodeList(): List<BarCode>? {
-       return GetListAsyncTask(database).start()
-    }
+    fun removeBarCode(barCode: BarCode)
+
+    /**
+     * The method  returns bar code list
+     *  */
+
+    fun getBarCodeList(): List<BarCode>
 }
