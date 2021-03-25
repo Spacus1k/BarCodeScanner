@@ -1,4 +1,4 @@
-package ru.shpak.barcodescanner.view
+package ru.shpak.barcodescanner.presentation.view
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -7,15 +7,10 @@ import ru.shpak.barcodescanner.model.BarCode
 class BarCodeAdapter :
     RecyclerView.Adapter<BarCodeViewHolder>() {
 
-    private var list: MutableList<BarCode> = mutableListOf()
+    private var list: List<BarCode> = mutableListOf()
 
-    fun clear() {
-        list.clear()
-        notifyDataSetChanged()
-    }
-
-    fun updateData(barCodeList: Collection<BarCode>){
-        list.addAll(barCodeList)
+    fun updateData(barCodeList: List<BarCode>) {
+        list = barCodeList
         notifyDataSetChanged()
     }
 
@@ -26,8 +21,5 @@ class BarCodeAdapter :
         holder.bind(list[position])
     }
 
-    override fun getItemCount(): Int {
-        return list.size
-    }
-
+    override fun getItemCount() = list.size
 }

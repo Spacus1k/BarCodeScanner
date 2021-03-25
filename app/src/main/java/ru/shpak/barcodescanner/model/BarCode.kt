@@ -1,6 +1,13 @@
 package ru.shpak.barcodescanner.model
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
 data class BarCode(
-    val date: String,
-    var barCode: String
+    @PrimaryKey(autoGenerate = true)
+    val id: Long? = null,
+    @ColumnInfo(name = "barCode") var barCode: String,
+    @ColumnInfo(name = "date") val date: String
 )

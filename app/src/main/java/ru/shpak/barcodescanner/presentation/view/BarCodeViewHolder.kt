@@ -1,4 +1,4 @@
-package ru.shpak.barcodescanner.view
+package ru.shpak.barcodescanner.presentation.view
 
 import android.view.LayoutInflater
 import android.view.View

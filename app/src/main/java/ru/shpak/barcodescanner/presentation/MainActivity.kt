@@ -6,10 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.shpak.barcodescanner.R
-import ru.shpak.barcodescanner.utils.Util
-import ru.shpak.barcodescanner.view.BarCodeAdapter
+import ru.shpak.barcodescanner.presentation.view.BarCodeAdapter
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
+
+    private val adapter = BarCodeAdapter()
+    private val viewModel = MainViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,22 +19,24 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         initBarCodeRecycleView()
         initButton()
+        initObservers()
     }
 
     private fun initBarCodeRecycleView() {
         barCodes.layoutManager = LinearLayoutManager(this)
-        barCodes.adapter = BarCodeAdapter()
+        barCodes.adapter = adapter
     }
 
     private fun initButton() {
-        buttonSwapLists.setOnClickListener(this)
+        addButton.setOnClickListener(this)
+    }
+
+    private fun initObservers() {
+        viewModel.barCodes.observe(this) { barCodes ->
+            adapter.updateData(barCodes)
+        }
     }
 
     override fun onClick(view: View?) {
-        when (view?.id) {
-            R.id.buttonSwapLists -> Util.swapLists(
-                barCodes.adapter as BarCodeAdapter
-            )
-        }
     }
 }
