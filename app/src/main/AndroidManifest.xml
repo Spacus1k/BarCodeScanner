@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ru.shpak.barcodescanner">
+
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
-        android:name="ru.shpak.barcodescanner.App"
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.BarCodeScanner"
-        >
+        android:theme="@style/Theme.BarCodeScanner">
         <activity
             android:name=".presentation.MainActivity"
             android:screenOrientation="portrait">
@@ -19,7 +19,8 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
+        <activity android:name=".presentation.ScanActivity"/>
+        <activity android:name=".presentation.HistoryActivity" />
     </application>
 </manifest>

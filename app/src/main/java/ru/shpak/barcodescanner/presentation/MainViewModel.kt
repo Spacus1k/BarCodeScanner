@@ -8,9 +8,9 @@ import ru.shpak.barcodescanner.model.BarCode
 class MainViewModel : ViewModel() {
 
     val barCodes = MutableLiveData<List<BarCode>>()
-    val interactor: BarCodeInteractorImpl = BarCodeInteractorImpl()
+    private val interactor: BarCodeInteractorImpl = BarCodeInteractorImpl()
 
-    private fun addBarCode(barCode: BarCode) {
+    fun addBarCode(barCode: BarCode) {
         interactor.addBarCode(barCode)
     }
 
@@ -18,7 +18,7 @@ class MainViewModel : ViewModel() {
         interactor.removeBarCode(barCode)
     }
 
-    private fun loadBarCodes() {
+    fun loadBarCodes() {
         barCodes.value = interactor.getBarCodeList()
     }
 }

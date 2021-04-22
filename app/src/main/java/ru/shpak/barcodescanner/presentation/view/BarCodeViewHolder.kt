@@ -28,6 +28,6 @@ class BarCodeViewHolder private constructor(itemView: View) : RecyclerView.ViewH
 
     fun bind(barCode: BarCode) {
         barCodeView.text = barCode.barCode
-        dateView.text = barCode.date
+        dateView.text = barCode.date.toString()
     }
 }

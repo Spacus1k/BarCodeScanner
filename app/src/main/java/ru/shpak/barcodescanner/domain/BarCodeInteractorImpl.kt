@@ -4,19 +4,18 @@ import ru.shpak.barcodescanner.data.asyncTask.RemoveBarCodeAsyncTask
 import ru.shpak.barcodescanner.data.asyncTask.GetBarCodesAsyncTask
 import ru.shpak.barcodescanner.data.asyncTask.InsertInDatabaseAsyncTask
 import ru.shpak.barcodescanner.model.BarCode
-import ru.shpak.barcodescanner.utils.start
 
 class BarCodeInteractorImpl : BarCodeInteractor {
 
     override fun addBarCode(barCode: BarCode) {
-        InsertInDatabaseAsyncTask(barCode).start()
+        InsertInDatabaseAsyncTask(barCode).execute().get()
     }
 
     override fun removeBarCode(barCode: BarCode) {
-        RemoveBarCodeAsyncTask(barCode).start()
+        RemoveBarCodeAsyncTask(barCode).execute().get()
     }
 
     override fun getBarCodeList(): List<BarCode> {
-        return GetBarCodesAsyncTask().start()
+        return GetBarCodesAsyncTask().execute().get()
     }
 }
