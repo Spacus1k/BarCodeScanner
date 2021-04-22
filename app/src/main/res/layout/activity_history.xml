@@ -12,7 +12,7 @@
         android:layout_height="40dp"
         android:background="@color/purple_700"
         android:gravity="center"
-        android:text="History"
+        android:text="@string/text_history_activity"
         android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintTop_toTopOf="parent" />

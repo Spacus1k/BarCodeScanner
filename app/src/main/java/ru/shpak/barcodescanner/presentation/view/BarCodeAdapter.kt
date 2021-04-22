@@ -3,8 +3,6 @@ package ru.shpak.barcodescanner.presentation.view
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.shpak.barcodescanner.model.BarCode
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 class BarCodeAdapter :
     RecyclerView.Adapter<BarCodeViewHolder>() {

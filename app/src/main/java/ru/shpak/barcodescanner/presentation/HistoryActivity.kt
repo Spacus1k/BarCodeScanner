@@ -8,8 +8,6 @@ import ru.shpak.barcodescanner.R
 import ru.shpak.barcodescanner.model.BarCode
 import ru.shpak.barcodescanner.presentation.view.BarCodeAdapter
 import ru.shpak.barcodescanner.utils.getCurrentDate
-import java.sql.Date
-import java.time.LocalDate
 
 class HistoryActivity : AppCompatActivity() {
 
@@ -43,7 +41,6 @@ class HistoryActivity : AppCompatActivity() {
         arguments?.let {
             val scanResult = arguments.get("scanResult").toString()
             viewModel.addBarCode(BarCode(barCode = scanResult, date = getCurrentDate()))
-            TODO()
         }
         viewModel.loadBarCodes()
     }
