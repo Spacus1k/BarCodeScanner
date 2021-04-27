@@ -1,11 +1,10 @@
 package ru.shpak.barcodescanner.utils
 
+import ru.shpak.barcodescanner.utils.Constants.DATE_FORMAT
 import java.text.SimpleDateFormat
-
 import java.util.*
 
 fun getCurrentDate(): String {
-    val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm:ss")
-    return sdf.format(Date())
+    val dateFormat = SimpleDateFormat(DATE_FORMAT, Locale.US)
+    return dateFormat.format(Date())
 }
-

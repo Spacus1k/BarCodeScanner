@@ -2,8 +2,6 @@ package ru.shpak.barcodescanner.domain
 
 import ru.shpak.barcodescanner.model.BarCode
 
-// TODO: add docs
-
 /**
  * The Interactor which used for connection with bard codes data
  * */

@@ -14,7 +14,7 @@ class MainViewModel : ViewModel() {
         interactor.addBarCode(barCode)
     }
 
-    private fun deleteBarCode(barCode: BarCode) {
+    private fun removeBarCode(barCode: BarCode) {
         interactor.removeBarCode(barCode)
     }
 

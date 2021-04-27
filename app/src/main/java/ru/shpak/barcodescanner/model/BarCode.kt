@@ -8,6 +8,6 @@ import androidx.room.PrimaryKey
 data class BarCode(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
-    @ColumnInfo(name = "barCode") var barCode: String,
+    @ColumnInfo(name = "bar_Code") var barCode: String,
     @ColumnInfo(name = "date") val date: String
 )

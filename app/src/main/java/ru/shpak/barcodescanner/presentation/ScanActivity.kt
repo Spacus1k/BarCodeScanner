@@ -7,11 +7,12 @@ import android.os.Bundle
 import android.util.Log
 import com.google.zxing.Result
 import me.dm7.barcodescanner.zxing.ZXingScannerView
+import ru.shpak.barcodescanner.utils.Constants.KEY_NAME_RESULT_SCAN
 import java.util.*
 
 class ScanActivity : Activity(), ZXingScannerView.ResultHandler {
 
-    private lateinit var mScannerView: ZXingScannerView
+    private var mScannerView: ZXingScannerView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,13 +22,13 @@ class ScanActivity : Activity(), ZXingScannerView.ResultHandler {
 
     override fun onResume() {
         super.onResume()
-        mScannerView.setResultHandler(this)
-        mScannerView.startCamera()
+        mScannerView?.setResultHandler(this)
+        mScannerView?.startCamera()
     }
 
     override fun onPause() {
         super.onPause()
-        mScannerView.stopCamera()
+        mScannerView?.stopCamera()
     }
 
     override fun handleResult(scanResult: Result) {
@@ -35,7 +36,7 @@ class ScanActivity : Activity(), ZXingScannerView.ResultHandler {
         Log.v(TAG, scanResult.barcodeFormat.toString())
 
         val intent= Intent(this, HistoryActivity::class.java)
-        intent.putExtra("scanResult", scanResult.text)
+        intent.putExtra(KEY_NAME_RESULT_SCAN, scanResult.text)
         startActivity(intent)
     }
 }
