@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import com.google.zxing.Result
 import me.dm7.barcodescanner.zxing.ZXingScannerView
-import ru.shpak.barcodescanner.utils.Constants.KEY_NAME_RESULT_SCAN
+import ru.shpak.barcodescanner.presentation.Constants.KEY_NAME_RESULT_SCAN
 import java.util.*
 
 class ScanActivity : Activity(), ZXingScannerView.ResultHandler {
@@ -32,10 +32,10 @@ class ScanActivity : Activity(), ZXingScannerView.ResultHandler {
     }
 
     override fun handleResult(scanResult: Result) {
-        Log.v(TAG, "$scanResult  ${Date()}" )
+        Log.v(TAG, "$scanResult  ${Date()}")
         Log.v(TAG, scanResult.barcodeFormat.toString())
 
-        val intent= Intent(this, HistoryActivity::class.java)
+        val intent = Intent(this, HistoryActivity::class.java)
         intent.putExtra(KEY_NAME_RESULT_SCAN, scanResult.text)
         startActivity(intent)
     }

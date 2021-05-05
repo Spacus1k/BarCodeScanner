@@ -1,8 +1,7 @@
-package ru.shpak.barcodescanner
+package ru.shpak.data
 
 import android.app.Application
-import ru.shpak.barcodescanner.data.AppDatabase
-import ru.shpak.barcodescanner.data.asyncTask.InitDatabaseAsyncTask
+import ru.shpak.data.asyncTask.InitDatabaseAsyncTask
 
 class App : Application() {
 

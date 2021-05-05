@@ -5,11 +5,9 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_history.*
 import ru.shpak.barcodescanner.R
-import ru.shpak.barcodescanner.model.BarCode
+import ru.shpak.barcodescanner.presentation.Constants.KEY_NAME_RESULT_SCAN
 import ru.shpak.barcodescanner.presentation.view.BarCodeAdapter
-import ru.shpak.barcodescanner.utils.Constants.KEY_NAME_RESULT_SCAN
-import ru.shpak.barcodescanner.utils.getCurrentDate
-import ru.shpak.barcodescanner.utils.hideActionBar
+import java.util.*
 
 class HistoryActivity : AppCompatActivity() {
 
@@ -19,7 +17,6 @@ class HistoryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_history)
-        hideActionBar()
 
         initObservers()
         initBarCodeRecycleView()
@@ -33,18 +30,18 @@ class HistoryActivity : AppCompatActivity() {
     }
 
     private fun initBarCodeRecycleView() {
-        with(barCodes){
+        with(barCodes) {
             layoutManager = LinearLayoutManager(context)
             adapter = this@HistoryActivity.adapter
         }
     }
-    
+
     private fun checkNewCodes() {
         val arguments = intent.extras
 
         arguments?.let {
             val scanResult = arguments.get(KEY_NAME_RESULT_SCAN).toString()
-            viewModel.addBarCode(BarCode(barCode = scanResult, date = getCurrentDate()))
+            viewModel.addBarCode(scanResult)
         }
         viewModel.loadBarCodes()
     }

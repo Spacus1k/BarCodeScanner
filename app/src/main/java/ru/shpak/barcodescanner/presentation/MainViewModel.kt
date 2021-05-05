@@ -2,20 +2,20 @@ package ru.shpak.barcodescanner.presentation
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import ru.shpak.barcodescanner.domain.BarCodeInteractorImpl
-import ru.shpak.barcodescanner.model.BarCode
+import ru.shpak.domain.BarCodeInteractorImpl
+import ru.shpak.domain.model.BarCode
 
 class MainViewModel : ViewModel() {
 
     val barCodes = MutableLiveData<List<BarCode>>()
     private val interactor: BarCodeInteractorImpl = BarCodeInteractorImpl()
 
-    fun addBarCode(barCode: BarCode) {
-        interactor.addBarCode(barCode)
+    fun addBarCode(scanResult: String) {
+        interactor.addBarCode(scanResult)
     }
 
-    private fun removeBarCode(barCode: BarCode) {
-        interactor.removeBarCode(barCode)
+    private fun removeBarCode(id: Long) {
+        interactor.removeBarCode(id)
     }
 
     fun loadBarCodes() {

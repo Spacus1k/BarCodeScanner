@@ -5,15 +5,13 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.shpak.barcodescanner.R
-import ru.shpak.barcodescanner.utils.hideActionBar
-import ru.shpak.barcodescanner.utils.startNewActivity
+import ru.shpak.barcodescanner.presentation.utils.startNewActivity
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        hideActionBar()
         initButtons()
     }
 
