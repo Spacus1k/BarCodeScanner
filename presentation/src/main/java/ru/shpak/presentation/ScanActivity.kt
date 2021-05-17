@@ -1,34 +1,36 @@
-package ru.shpak.barcodescanner.presentation
+package ru.shpak.presentation
 
-import android.app.Activity
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.google.zxing.Result
 import me.dm7.barcodescanner.zxing.ZXingScannerView
-import ru.shpak.barcodescanner.presentation.Constants.KEY_NAME_RESULT_SCAN
+import ru.shpak.presentation.Constants.KEY_NAME_RESULT_SCAN
 import java.util.*
 
-class ScanActivity : Activity(), ZXingScannerView.ResultHandler {
+class ScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
 
-    private var mScannerView: ZXingScannerView? = null
+    private var scannerView: ZXingScannerView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mScannerView = ZXingScannerView(this)
-        setContentView(mScannerView)
+        scannerView = ZXingScannerView(this)
+        setContentView(scannerView)
     }
 
     override fun onResume() {
         super.onResume()
-        mScannerView?.setResultHandler(this)
-        mScannerView?.startCamera()
+        scannerView?.let {
+            it.setResultHandler(this)
+            it.startCamera()
+        }
     }
 
     override fun onPause() {
         super.onPause()
-        mScannerView?.stopCamera()
+        scannerView?.stopCamera()
     }
 
     override fun handleResult(scanResult: Result) {

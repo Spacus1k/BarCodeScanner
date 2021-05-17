@@ -1,12 +1,11 @@
-package ru.shpak.barcodescanner.presentation
+package ru.shpak.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_history.*
-import ru.shpak.barcodescanner.R
-import ru.shpak.barcodescanner.presentation.Constants.KEY_NAME_RESULT_SCAN
-import ru.shpak.barcodescanner.presentation.view.BarCodeAdapter
+import ru.shpak.presentation.Constants.KEY_NAME_RESULT_SCAN
+import ru.shpak.presentation.view.BarCodeAdapter
 import java.util.*
 
 class HistoryActivity : AppCompatActivity() {

@@ -11,7 +11,10 @@ import ru.shpak.domain.utils.toListBarCode
 class BarCodeInteractorImpl : BarCodeInteractor {
 
     override fun addBarCode(scanResult: String) {
-        InsertInDatabaseAsyncTask(BarCodeData(barCode = scanResult)).start()
+        InsertInDatabaseAsyncTask(
+            BarCodeData(barCode = scanResult)
+        )
+            .start()
     }
 
     override fun removeBarCode(id: Long) {
@@ -20,6 +23,6 @@ class BarCodeInteractorImpl : BarCodeInteractor {
 
     override fun getBarCodeList(): List<BarCode> {
         val listBarCodes = GetBarCodesAsyncTask().start()
-        return (toListBarCode(listBarCodes)).sortedByDescending { it.date }
+        return listBarCodes.toListBarCode().sortedByDescending { it.date }
     }
 }

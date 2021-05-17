@@ -1,4 +1,4 @@
-package ru.shpak.barcodescanner.presentation
+package ru.shpak.presentation
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

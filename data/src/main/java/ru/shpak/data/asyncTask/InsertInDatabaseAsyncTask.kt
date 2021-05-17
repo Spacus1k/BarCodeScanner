@@ -1,7 +1,7 @@
 package ru.shpak.data.asyncTask
 
 import android.os.AsyncTask
-import ru.shpak.data.App
+import ru.shpak.data.DatabaseHolder.appDatabase
 import ru.shpak.data.model.BarCodeData
 
 class InsertInDatabaseAsyncTask(inputBarCodeData: BarCodeData) :
@@ -10,6 +10,6 @@ class InsertInDatabaseAsyncTask(inputBarCodeData: BarCodeData) :
     private val barCode = inputBarCodeData
 
     override fun doInBackground(vararg params: Any?) {
-        App.instance.database.barCodeDao().insert(barCode)
+        appDatabase?.barCodeDao()?.insert(barCode)
     }
 }

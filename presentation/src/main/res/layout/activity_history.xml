@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.HistoryActivity">
+    tools:context="ru.shpak.presentation.HistoryActivity">
 
     <TextView
         android:id="@+id/historyTextView"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/default_action_bar_height"
         android:background="@color/purple_700"
         android:gravity="center"
         android:text="@string/text_history_activity"

@@ -8,7 +8,11 @@ import ru.shpak.data.utils.DateUtils
 
 const val DATABASE_VERSION = 1
 
-@Database(entities = [BarCodeData::class], version = DATABASE_VERSION, exportSchema = false)
+@Database(
+    entities = [BarCodeData::class],
+    version = DATABASE_VERSION,
+    exportSchema = false
+)
 @TypeConverters(DateUtils::class)
 abstract class AppDatabase : RoomDatabase() {
 

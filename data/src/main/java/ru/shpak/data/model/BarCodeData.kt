@@ -11,7 +11,11 @@ import java.util.*
 data class BarCodeData(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
-    @ColumnInfo(name = "bar_Code") var barCode: String,
+
+    @ColumnInfo(name = "bar_code")
+    var barCode: String,
+
     @TypeConverters(DateUtils::class)
-    @ColumnInfo(name = "date") val date: Date = Date()
+    @ColumnInfo(name = "date")
+    val date: Date = Date()
 )

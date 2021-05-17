@@ -1,11 +1,11 @@
-package ru.shpak.barcodescanner.presentation
+package ru.shpak.presentation
 
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import ru.shpak.barcodescanner.R
-import ru.shpak.barcodescanner.presentation.utils.startNewActivity
+import ru.shpak.domain.model.BarCode
+import ru.shpak.presentation.utils.startNewActivity
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
