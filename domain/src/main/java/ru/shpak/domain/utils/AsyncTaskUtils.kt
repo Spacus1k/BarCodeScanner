@@ -1,4 +1,4 @@
-package ru.shpak.barcodescanner.utils
+package ru.shpak.domain.utils
 
 import android.os.AsyncTask
 

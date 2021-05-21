@@ -6,7 +6,7 @@ import androidx.room.TypeConverters
 import ru.shpak.data.model.BarCodeData
 import ru.shpak.data.utils.DateUtils
 
-const val DATABASE_VERSION = 1
+const val DATABASE_VERSION = 2
 
 @Database(
     entities = [BarCodeData::class],

@@ -1,6 +1,6 @@
 package ru.shpak.domain
 
-import ru.shpak.barcodescanner.utils.start
+import ru.shpak.domain.utils.start
 import ru.shpak.data.asyncTask.RemoveBarCodeAsyncTask
 import ru.shpak.data.asyncTask.GetBarCodesAsyncTask
 import ru.shpak.data.asyncTask.InsertInDatabaseAsyncTask
