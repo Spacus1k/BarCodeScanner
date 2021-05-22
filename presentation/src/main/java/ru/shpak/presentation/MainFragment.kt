@@ -5,11 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import kotlinx.android.synthetic.main.fragment_main.*
 import ru.shpak.presentation.utils.replaceFragment
+import ru.shpak.presentation.utils.startNewActivity
 
-class MainFragment : Fragment(R.layout.fragment_main),  View.OnClickListener {
+class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    companion object {
+        fun newInstance() =
+            MainFragment()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -26,24 +28,26 @@ class MainFragment : Fragment(R.layout.fragment_main),  View.OnClickListener {
         view?.let {
             when (view.id) {
                 R.id.historyButton -> openHistoryFragment()
-                R.id.scanButton -> openScanFragment()
+                R.id.scanButton -> activity?.let { currentActivity ->
+                    startNewActivity(
+                        currentActivity.applicationContext,
+                        ScanActivity::class.java,
+                        true
+                    )
+                }
+                else -> null
             }
         }
     }
 
     private fun openHistoryFragment() {
-        replaceFragment(
-            activity?.supportFragmentManager?.beginTransaction(),
-            R.id.fragment_container,
-            HistoryFragment()
-        )
-    }
-
-    private fun openScanFragment() {
-        replaceFragment(
-            activity?.supportFragmentManager?.beginTransaction(),
-            R.id.fragment_container,
-            ScanFragment()
-        )
+        activity?.let {
+            replaceFragment(
+                it.supportFragmentManager,
+                R.id.fragment_container,
+                HistoryFragment.newInstance(),
+                true
+            )
+        }
     }
 }

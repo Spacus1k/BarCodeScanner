@@ -10,17 +10,12 @@ import ru.shpak.presentation.view.BarCodeAdapter
 class HistoryFragment : Fragment(R.layout.fragment_history) {
 
     companion object {
-        fun newInstance(scanResult: String) =
-            HistoryFragment().apply {
-                arguments = Bundle().apply {
-                    putString(Constants.SCAN_RESULT, scanResult)
-                }
-            }
+        fun newInstance() =
+            HistoryFragment()
     }
 
     private val adapter = BarCodeAdapter()
     private val viewModel = MainViewModel()
-    private var scanResult: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,21 +26,13 @@ class HistoryFragment : Fragment(R.layout.fragment_history) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initBarCodeRecycleView()
-        updateInfo()
+        viewModel.loadBarCodes()
     }
 
     private fun initObservers() {
         viewModel.barCodes.observe(this) { barCodes ->
             adapter.updateData(barCodes)
         }
-    }
-
-    private fun updateInfo() {
-        arguments?.let {
-            scanResult = it.getString(Constants.SCAN_RESULT)
-            viewModel.addBarCode(scanResult.toString())
-        }
-        viewModel.loadBarCodes()
     }
 
     private fun initBarCodeRecycleView() {

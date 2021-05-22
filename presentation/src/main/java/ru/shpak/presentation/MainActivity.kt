@@ -9,9 +9,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         replaceFragment(
-            supportFragmentManager.beginTransaction(),
+            supportFragmentManager,
             R.id.fragment_container,
-            MainFragment()
+            MainFragment.newInstance(),
+            true
         )
     }
 }
