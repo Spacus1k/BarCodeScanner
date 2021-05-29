@@ -2,8 +2,12 @@ package ru.shpak.presentation.utils
 
 import android.content.Context
 import android.widget.Toast
+import com.google.android.material.snackbar.BaseTransientBottomBar
 
-fun showDefaultMassage(context: Context,text:String, ){
-    val toast= Toast.makeText(context,text, Toast.LENGTH_LONG)
-    toast.show()
+fun showToast(
+    context: Context,
+    message: String,
+    duration: Int = Toast.LENGTH_SHORT
+) {
+    Toast.makeText(context, message, duration).show()
 }

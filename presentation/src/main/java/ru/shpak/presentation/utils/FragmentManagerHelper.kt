@@ -7,13 +7,13 @@ fun replaceFragment(
     fragmentManager: FragmentManager,
     containerViewId: Int,
     fragment: Fragment,
-    isAddToBackStack: Boolean
+    isAddToBackStack: Boolean = true
 ) {
     with(fragmentManager.beginTransaction()) {
         replace(containerViewId, fragment)
 
-        if (isAddToBackStack){
-            addToBackStack(null)
+        if (isAddToBackStack) {
+            addToBackStack(fragment.tag)
         }
         commit()
     }

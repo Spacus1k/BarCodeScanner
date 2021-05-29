@@ -3,10 +3,9 @@ package ru.shpak.data
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import ru.shpak.data.AppDatabase.Companion.DATABASE_VERSION
 import ru.shpak.data.model.BarCodeData
 import ru.shpak.data.utils.DateUtils
-
-const val DATABASE_VERSION = 2
 
 @Database(
     entities = [BarCodeData::class],
@@ -18,6 +17,7 @@ abstract class AppDatabase : RoomDatabase() {
 
     companion object {
         const val NAME_DATABASE = "barcodeDB"
+        const val DATABASE_VERSION = 2
     }
 
     abstract fun barCodeDao(): BarCodeDao

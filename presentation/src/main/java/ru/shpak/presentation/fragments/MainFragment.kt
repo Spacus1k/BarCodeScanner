@@ -1,17 +1,19 @@
-package ru.shpak.presentation
+package ru.shpak.presentation.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import kotlinx.android.synthetic.main.fragment_main.*
+import ru.shpak.presentation.R
+import ru.shpak.presentation.ScanActivity
 import ru.shpak.presentation.utils.replaceFragment
 import ru.shpak.presentation.utils.startNewActivity
 
 class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener {
 
     companion object {
-        fun newInstance() =
-            MainFragment()
+        fun newInstance() = MainFragment()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -28,14 +30,16 @@ class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener {
         view?.let {
             when (view.id) {
                 R.id.historyButton -> openHistoryFragment()
-                R.id.scanButton -> activity?.let { currentActivity ->
+
+                R.id.scanButton -> activity?.let {
                     startNewActivity(
-                        currentActivity.applicationContext,
+                        it.applicationContext,
                         ScanActivity::class.java,
-                        true
+                        arrayOf(Intent.FLAG_ACTIVITY_NEW_TASK)
                     )
                 }
-                else -> null
+                else -> {
+                }
             }
         }
     }
@@ -45,8 +49,7 @@ class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener {
             replaceFragment(
                 it.supportFragmentManager,
                 R.id.fragment_container,
-                HistoryFragment.newInstance(),
-                true
+                HistoryFragment.newInstance()
             )
         }
     }

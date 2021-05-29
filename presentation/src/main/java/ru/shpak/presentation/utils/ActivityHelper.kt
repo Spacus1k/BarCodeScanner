@@ -2,17 +2,17 @@ package ru.shpak.presentation.utils
 
 import android.content.Context
 import android.content.Intent
+import android.support.v4.media.MediaBrowserCompat
+import androidx.annotation.IntDef
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.startActivity
 
 fun <T : AppCompatActivity> startNewActivity(
     context: Context,
     activity: Class<T>,
-    isCallFromOutsideActivityContext: Boolean
+    intentFlags: Array<Int>? = null
 ) {
     val intent = Intent(context, activity)
-    if (isCallFromOutsideActivityContext) {
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-    }
+    intentFlags?.forEach { intent.addFlags(it) }
     startActivity(context, intent, null)
 }
