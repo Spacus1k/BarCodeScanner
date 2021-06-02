@@ -10,6 +10,10 @@ class MainViewModel : ViewModel() {
     val barCodes = MutableLiveData<List<BarCode>>()
     private val interactor: BarCodeInteractorImpl = BarCodeInteractorImpl()
 
+    init {
+        loadBarCodes()
+    }
+
     fun addBarCode(scanResult: String) {
         interactor.addBarCode(scanResult)
     }
@@ -18,7 +22,7 @@ class MainViewModel : ViewModel() {
         interactor.removeBarCode(id)
     }
 
-    fun loadBarCodes() {
+    private fun loadBarCodes() {
         barCodes.value = interactor.getBarCodeList()
     }
 }

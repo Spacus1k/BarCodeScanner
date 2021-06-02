@@ -1,44 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/BarcodeScannerTextView"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/default_action_bar_height"
-        android:background="@color/purple_700"
-        android:gravity="center"
-        android:text="@string/text_main_activity"
-        android:textColor="@color/white"
-        android:textSize="@dimen/default_action_bar_text_size"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/buttonBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:padding="16dp">
-
-        <Button
-            android:id="@+id/scanButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/scan_button"
-            android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/historyButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/button_history"
-            android:textSize="20sp" />
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    android:layout_height="match_parent"/>

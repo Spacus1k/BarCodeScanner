@@ -11,18 +11,19 @@ class InitDatabaseAsyncTask(private val context: Context) : AsyncTask<Unit, Unit
 
     override fun doInBackground(vararg params: Unit?): AppDatabase {
 // TODO: add migration in database
-        return Room.databaseBuilder(
-           context,
-            AppDatabase::class.java,
-            AppDatabase.NAME_DATABASE
-        )
-            .build()
+
 //        return Room.databaseBuilder(
-//            App.getApplicationContext(),
+//           context,
 //            AppDatabase::class.java,
 //            AppDatabase.NAME_DATABASE
 //        )
-//            .fallbackToDestructiveMigration()
 //            .build()
+        return Room.databaseBuilder(
+            context,
+            AppDatabase::class.java,
+            AppDatabase.NAME_DATABASE
+        )
+            .fallbackToDestructiveMigration()
+            .build()
     }
 }

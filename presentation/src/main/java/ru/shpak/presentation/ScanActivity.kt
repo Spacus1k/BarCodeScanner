@@ -1,14 +1,11 @@
 package ru.shpak.presentation
 
-import android.content.ContentValues.TAG
-import android.content.Intent
-import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Toast
 import com.google.zxing.Result
 import me.dm7.barcodescanner.zxing.ZXingScannerView
-import ru.shpak.presentation.Constants.KEY_NAME_RESULT_SCAN
-import java.util.*
+import ru.shpak.presentation.utils.showToast
 
 class ScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
 
@@ -22,10 +19,7 @@ class ScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
 
     override fun onResume() {
         super.onResume()
-        scannerView?.let {
-            it.setResultHandler(this)
-            it.startCamera()
-        }
+        startScanning()
     }
 
     override fun onPause() {
@@ -34,11 +28,19 @@ class ScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
     }
 
     override fun handleResult(scanResult: Result) {
-        Log.v(TAG, "$scanResult  ${Date()}")
-        Log.v(TAG, scanResult.barcodeFormat.toString())
+        showToast(
+            applicationContext,
+            getString(R.string.message_after_scanning),
+            Toast.LENGTH_LONG
+        )
+        MainViewModel().addBarCode(scanResult.text)
+        startScanning()
+    }
 
-        val intent = Intent(this, HistoryActivity::class.java)
-        intent.putExtra(KEY_NAME_RESULT_SCAN, scanResult.text)
-        startActivity(intent)
+    private fun startScanning() {
+        scannerView?.let {
+            it.setResultHandler(this)
+            it.startCamera()
+        }
     }
 }
