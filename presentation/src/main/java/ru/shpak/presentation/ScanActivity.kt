@@ -6,9 +6,13 @@ import android.widget.Toast
 import com.google.zxing.Result
 import me.dm7.barcodescanner.zxing.ZXingScannerView
 import ru.shpak.presentation.utils.showToast
+import javax.inject.Inject
 
-class ScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
+class ScanActivity :
+    AppCompatActivity(), ZXingScannerView.ResultHandler {
 
+    @Inject
+    lateinit var scanViewModel: MainViewModel
     private var scannerView: ZXingScannerView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +37,7 @@ class ScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
             getString(R.string.message_after_scanning),
             Toast.LENGTH_LONG
         )
-        MainViewModel().addBarCode(scanResult.text)
+        scanViewModel.addBarCode(scanResult.text)
         startScanning()
     }
 

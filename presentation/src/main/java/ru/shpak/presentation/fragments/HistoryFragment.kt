@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_history.*
 import ru.shpak.presentation.MainViewModel
 import ru.shpak.presentation.R
+import ru.shpak.presentation.di.initPresentationSubcomponent
 import ru.shpak.presentation.view.BarCodeAdapter
+import javax.inject.Inject
 
 class HistoryFragment : Fragment(R.layout.fragment_history) {
 
@@ -15,8 +17,14 @@ class HistoryFragment : Fragment(R.layout.fragment_history) {
         fun newInstance() = HistoryFragment()
     }
 
+    @Inject
+    lateinit var viewModel: MainViewModel
     private val adapter = BarCodeAdapter()
-    private val viewModel = MainViewModel()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initPresentationSubcomponent.getComponent()?.let { viewModel = it.getViewModel() }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

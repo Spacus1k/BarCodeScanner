@@ -7,8 +7,9 @@ import ru.shpak.data.asyncTask.InsertInDatabaseAsyncTask
 import ru.shpak.data.model.BarCodeData
 import ru.shpak.domain.model.BarCode
 import ru.shpak.domain.utils.toListBarCode
+import javax.inject.Inject
 
-class BarCodeInteractorImpl : BarCodeInteractor {
+class BarCodeInteractorImpl @Inject constructor() : BarCodeInteractor {
 
     override fun addBarCode(scanResult: String) {
         InsertInDatabaseAsyncTask(
