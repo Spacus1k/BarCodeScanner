@@ -1,10 +1,14 @@
 package ru.shpak.presentation.fragments
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_main.*
+import ru.shpak.presentation.MainActivity
 import ru.shpak.presentation.R
 import ru.shpak.presentation.ScanActivity
 import ru.shpak.presentation.utils.replaceFragment
@@ -13,6 +17,7 @@ import ru.shpak.presentation.utils.startNewActivity
 class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener {
 
     companion object {
+        const val MAIN_FRAGMENT_TAG = "MainFragment"
         fun newInstance() = MainFragment()
     }
 
@@ -30,17 +35,18 @@ class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener {
         view?.let {
             when (view.id) {
                 R.id.historyButton -> openHistoryFragment()
-
-                R.id.scanButton -> activity?.let {
-                    startNewActivity(
-                        it.applicationContext,
-                        ScanActivity::class.java,
-                        arrayOf(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    )
-                }
-                else -> {
-                }
+                R.id.scanButton -> startScanActivity()
             }
+        }
+    }
+
+    private fun startScanActivity() {
+        activity?.let {
+            startNewActivity(
+                it.applicationContext,
+                ScanActivity::class.java,
+                arrayOf(Intent.FLAG_ACTIVITY_NEW_TASK)
+            )
         }
     }
 
@@ -49,7 +55,8 @@ class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener {
             replaceFragment(
                 it.supportFragmentManager,
                 R.id.fragment_container,
-                HistoryFragment.newInstance()
+                HistoryFragment.newInstance(),
+                HistoryFragment.HISTORY_FRAGMENT_TAG,
             )
         }
     }

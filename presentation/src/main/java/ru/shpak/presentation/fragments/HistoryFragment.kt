@@ -12,6 +12,7 @@ import ru.shpak.presentation.view.BarCodeAdapter
 class HistoryFragment : Fragment(R.layout.fragment_history) {
 
     companion object {
+        const val HISTORY_FRAGMENT_TAG = "HistoryFragment"
         fun newInstance() = HistoryFragment()
     }
 

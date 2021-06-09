@@ -12,7 +12,7 @@ import javax.inject.Inject
 class SplashActivity : AppCompatActivity() {
 
     companion object {
-        private const val SPLASH_SCREEN_SHOW_TIME = 5000L
+        private const val SPLASH_SCREEN_SHOW_TIME = 200L
     }
 
     @Inject
@@ -41,7 +41,6 @@ class SplashActivity : AppCompatActivity() {
                     startMainActivity()
                 }
             }
-
         }
     }
 
