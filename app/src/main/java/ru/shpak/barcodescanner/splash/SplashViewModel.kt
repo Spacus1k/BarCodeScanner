@@ -4,20 +4,24 @@ import androidx.annotation.DrawableRes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import ru.shpak.barcodescanner.App
 import ru.shpak.barcodescanner.R
 import ru.shpak.barcodescanner.splash.timer.Timer
 import ru.shpak.barcodescanner.splash.timer.TimerImpl
+import javax.inject.Inject
 
 class SplashViewModel : ViewModel() {
     private val _iconId = MutableLiveData<@DrawableRes Int>()
     val iconId: LiveData<Int> get() = _iconId
 
     private val _timerDone = MutableLiveData(false)
-    val timerDone : LiveData<Boolean> get() = _timerDone
+    val timerDone: LiveData<Boolean> get() = _timerDone
 
-    private val timer : Timer = TimerImpl()
+    @Inject
+    lateinit var timer: Timer
 
     init {
+        App.getComponent().inject(this)
         loadImage()
     }
 
@@ -25,7 +29,7 @@ class SplashViewModel : ViewModel() {
         _iconId.value = R.drawable.ic_flag_by
     }
 
-    fun createDelay(delayInMills : Long){
+    fun createDelay(delayInMills: Long) {
         timer.delayAction(delayInMills) {
             _timerDone.value = true
         }

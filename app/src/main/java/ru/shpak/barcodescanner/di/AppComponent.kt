@@ -1,11 +1,13 @@
 package ru.shpak.barcodescanner.di
 
 import dagger.Component
-import ru.shpak.domain.BarCodeInteractorImpl
-import ru.shpak.domain.di.BarCodeInteractorModule
-import ru.shpak.presentation.di.ViewModelModule
+import ru.shpak.barcodescanner.splash.SplashActivity
+import ru.shpak.barcodescanner.splash.SplashViewModel
 
-@Component(modules = [BarCodeInteractorModule::class, ViewModelModule::class])
+@Component(modules = [SplashViewModelModule::class, TimerModule::class])
 interface AppComponent {
-    fun getBarCodeInteractor(): BarCodeInteractorImpl
+
+    fun inject(target: SplashActivity)
+
+    fun inject(target: SplashViewModel)
 }

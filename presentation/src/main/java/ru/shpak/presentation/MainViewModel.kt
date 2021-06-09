@@ -3,11 +3,12 @@ package ru.shpak.presentation
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.shpak.domain.BarCodeInteractor
+import ru.shpak.domain.BarCodeInteractorImpl
 import ru.shpak.domain.model.BarCode
-import javax.inject.Inject
 
-class MainViewModel @Inject constructor(val  interactor: BarCodeInteractor): ViewModel() {
+class MainViewModel : ViewModel() {
 
+    private val interactor: BarCodeInteractor = BarCodeInteractorImpl()
     val barCodes = MutableLiveData<List<BarCode>>()
 
     init {

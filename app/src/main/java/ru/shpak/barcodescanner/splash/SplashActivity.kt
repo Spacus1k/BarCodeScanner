@@ -4,8 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_splash.*
+import ru.shpak.barcodescanner.App
 import ru.shpak.barcodescanner.R
 import ru.shpak.presentation.MainActivity
+import javax.inject.Inject
 
 class SplashActivity : AppCompatActivity() {
 
@@ -13,13 +15,17 @@ class SplashActivity : AppCompatActivity() {
         private const val SPLASH_SCREEN_SHOW_TIME = 5000L
     }
 
-    private val viewModel = SplashViewModel()
+    @Inject
+    lateinit var viewModel: SplashViewModel
+
+    init {
+        App.getComponent().inject(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         initObservers()
-
         viewModel.createDelay(SPLASH_SCREEN_SHOW_TIME)
     }
 

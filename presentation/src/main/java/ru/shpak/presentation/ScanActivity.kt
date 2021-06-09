@@ -1,18 +1,16 @@
 package ru.shpak.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.zxing.Result
 import me.dm7.barcodescanner.zxing.ZXingScannerView
 import ru.shpak.presentation.utils.showToast
-import javax.inject.Inject
 
 class ScanActivity :
     AppCompatActivity(), ZXingScannerView.ResultHandler {
 
-    @Inject
-    lateinit var scanViewModel: MainViewModel
+    private val scanViewModel = MainViewModel()
     private var scannerView: ZXingScannerView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
