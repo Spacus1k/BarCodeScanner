@@ -1,8 +1,8 @@
 package ru.shpak.presentation.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_history.*
 import ru.shpak.presentation.MainViewModel
@@ -15,8 +15,8 @@ class HistoryFragment : Fragment(R.layout.fragment_history) {
         fun newInstance() = HistoryFragment()
     }
 
+    private val viewModel: MainViewModel = MainViewModel()
     private val adapter = BarCodeAdapter()
-    private val viewModel = MainViewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
