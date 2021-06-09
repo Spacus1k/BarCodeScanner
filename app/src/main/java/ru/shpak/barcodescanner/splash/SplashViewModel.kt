@@ -10,15 +10,12 @@ import ru.shpak.barcodescanner.splash.timer.Timer
 import ru.shpak.barcodescanner.splash.timer.TimerImpl
 import javax.inject.Inject
 
-class SplashViewModel : ViewModel() {
+class SplashViewModel @Inject constructor( val timer: Timer) : ViewModel() {
     private val _iconId = MutableLiveData<@DrawableRes Int>()
     val iconId: LiveData<Int> get() = _iconId
 
     private val _timerDone = MutableLiveData(false)
     val timerDone: LiveData<Boolean> get() = _timerDone
-
-    @Inject
-    lateinit var timer: Timer
 
     init {
         App.getComponent().inject(this)

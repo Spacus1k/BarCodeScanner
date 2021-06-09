@@ -6,6 +6,7 @@ import ru.shpak.presentation.utils.replaceFragment
 import ru.shpak.presentation.fragments.MainFragment
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         replaceFragment(
@@ -15,4 +16,5 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             true
         )
     }
+
 }
