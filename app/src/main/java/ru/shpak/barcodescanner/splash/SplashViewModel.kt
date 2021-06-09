@@ -23,7 +23,7 @@ class SplashViewModel @Inject constructor( val timer: Timer) : ViewModel() {
     }
 
     private fun loadImage() {
-        _iconId.value = R.drawable.ic_flag_by
+        _iconId.value = R.drawable.ic_qr_code
     }
 
     fun createDelay(delayInMills: Long) {

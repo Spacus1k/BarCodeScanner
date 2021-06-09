@@ -8,10 +8,9 @@
     <ImageView
         android:id="@+id/appIcon"
         android:layout_width="240dp"
-        android:layout_height="240dp"
+        android:layout_height="402dp"
         android:layout_gravity="center"
         android:layout_weight="0.5"
-        android:padding="16dp"
-        />
+        android:padding="16dp" />
 
 </LinearLayout>
