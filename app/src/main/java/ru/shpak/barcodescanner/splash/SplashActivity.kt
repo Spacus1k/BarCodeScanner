@@ -19,7 +19,7 @@ class SplashActivity : AppCompatActivity() {
     lateinit var viewModel: SplashViewModel
 
     init {
-        App.getComponent().inject(this)
+        App.getAppComponent().inject(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

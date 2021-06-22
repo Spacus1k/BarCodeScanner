@@ -1,21 +1,16 @@
 package ru.shpak.barcodescanner
 
 import android.app.Application
-import ru.shpak.barcodescanner.di.AppComponent
-import ru.shpak.barcodescanner.di.DaggerAppComponent
+import ru.shpak.barcodescanner.di.DiProvider
+import ru.shpak.barcodescanner.di.SubComponents
 import ru.shpak.data.appDatabase
 import ru.shpak.data.asyncTask.InitDatabaseAsyncTask
 
-class App : Application() {
-
-    companion object {
-        private var component: AppComponent = DaggerAppComponent.create()
-        fun getComponent(): AppComponent = component
-    }
+class App : Application(), SubComponents {
 
     override fun onCreate() {
         super.onCreate()
-        initDatabase()
+        DiProvider.buildDi(this)
     }
 
     private fun initDatabase() {

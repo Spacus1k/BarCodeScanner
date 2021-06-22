@@ -1,14 +1,10 @@
 package ru.shpak.presentation.fragments
 
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_main.*
-import ru.shpak.presentation.MainActivity
 import ru.shpak.presentation.R
 import ru.shpak.presentation.ScanActivity
 import ru.shpak.presentation.utils.replaceFragment

@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import ru.shpak.barcodescanner.App
 import ru.shpak.barcodescanner.R
 import ru.shpak.barcodescanner.splash.timer.Timer
-import ru.shpak.barcodescanner.splash.timer.TimerImpl
 import javax.inject.Inject
 
 class SplashViewModel @Inject constructor( val timer: Timer) : ViewModel() {
@@ -18,7 +17,7 @@ class SplashViewModel @Inject constructor( val timer: Timer) : ViewModel() {
     val timerDone: LiveData<Boolean> get() = _timerDone
 
     init {
-        App.getComponent().inject(this)
+        App.getAppComponent().inject(this)
         loadImage()
     }
 

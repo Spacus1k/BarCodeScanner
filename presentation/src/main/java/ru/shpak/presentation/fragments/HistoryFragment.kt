@@ -8,6 +8,7 @@ import kotlinx.android.synthetic.main.fragment_history.*
 import ru.shpak.presentation.MainViewModel
 import ru.shpak.presentation.R
 import ru.shpak.presentation.view.BarCodeAdapter
+import javax.inject.Inject
 
 class HistoryFragment : Fragment(R.layout.fragment_history) {
 
@@ -16,7 +17,8 @@ class HistoryFragment : Fragment(R.layout.fragment_history) {
         fun newInstance() = HistoryFragment()
     }
 
-    private val viewModel: MainViewModel = MainViewModel()
+    @Inject
+    lateinit var viewModel: MainViewModel
     private val adapter = BarCodeAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

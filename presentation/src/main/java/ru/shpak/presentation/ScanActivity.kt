@@ -9,11 +9,13 @@ import androidx.core.content.ContextCompat
 import com.google.zxing.Result
 import me.dm7.barcodescanner.zxing.ZXingScannerView
 import ru.shpak.presentation.utils.showToast
+import javax.inject.Inject
 
 class ScanActivity :
     AppCompatActivity(), ZXingScannerView.ResultHandler {
 
-    private val scanViewModel = MainViewModel()
+    @Inject
+    lateinit var scanViewModel: MainViewModel
     private var scannerView: ZXingScannerView? = null
 
     private companion object {
