@@ -1,13 +1,12 @@
 package ru.shpak.barcodescanner.di
 
+import android.app.Application
+import android.content.Context
 import dagger.Module
-import ru.shpak.domain.di.DomainSubcomponent
-import ru.shpak.presentation.di.PresentationSubcomponent
+import dagger.Provides
 
-@Module(
-    subcomponents = [
-        PresentationSubcomponent::class,
-        DomainSubcomponent::class
-    ]
-)
-class AppModule
+@Module
+class AppModule {
+    @Provides
+    fun provideApplicationContext(app: Application): Context = app.applicationContext
+}

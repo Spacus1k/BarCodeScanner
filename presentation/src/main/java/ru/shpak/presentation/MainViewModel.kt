@@ -2,9 +2,7 @@ package ru.shpak.presentation
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import dagger.android.AndroidInjectionKey
 import ru.shpak.domain.BarCodeInteractor
-import ru.shpak.domain.BarCodeInteractorImpl
 import ru.shpak.domain.model.BarCode
 import javax.inject.Inject
 

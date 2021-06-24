@@ -3,19 +3,19 @@ package ru.shpak.presentation
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.zxing.Result
 import me.dm7.barcodescanner.zxing.ZXingScannerView
+import ru.shpak.presentation.base.BaseActivity
 import ru.shpak.presentation.utils.showToast
 import javax.inject.Inject
 
-class ScanActivity :
-    AppCompatActivity(), ZXingScannerView.ResultHandler {
+class ScanActivity : BaseActivity(), ZXingScannerView.ResultHandler {
 
     @Inject
     lateinit var scanViewModel: MainViewModel
+
     private var scannerView: ZXingScannerView? = null
 
     private companion object {
