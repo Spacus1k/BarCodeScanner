@@ -6,7 +6,7 @@ import ru.shpak.domain.BarCodeInteractor
 import ru.shpak.domain.model.BarCode
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor(val interactor: BarCodeInteractor) : ViewModel() {
+class MainViewModel @Inject constructor(private val interactor: BarCodeInteractor) : ViewModel() {
 
     val barCodes = MutableLiveData<List<BarCode>>()
 
