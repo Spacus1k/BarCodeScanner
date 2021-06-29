@@ -1,24 +1,29 @@
 package ru.shpak.presentation.fragments
 
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_main.*
-import ru.shpak.presentation.MainActivity
 import ru.shpak.presentation.R
 import ru.shpak.presentation.ScanActivity
-import ru.shpak.presentation.utils.replaceFragment
+import ru.shpak.presentation.utils.addFragment
 import ru.shpak.presentation.utils.startNewActivity
 
-class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener {
+class MainFragment : Fragment(), View.OnClickListener {
 
     companion object {
-        const val MAIN_FRAGMENT_TAG = "MainFragment"
         fun newInstance() = MainFragment()
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,11 +57,10 @@ class MainFragment : Fragment(R.layout.fragment_main), View.OnClickListener {
 
     private fun openHistoryFragment() {
         activity?.let {
-            replaceFragment(
+            addFragment(
                 it.supportFragmentManager,
                 R.id.fragment_container,
-                HistoryFragment.newInstance(),
-                HistoryFragment.HISTORY_FRAGMENT_TAG,
+                HistoryFragment.newInstance()
             )
         }
     }

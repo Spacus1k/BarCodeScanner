@@ -35,4 +35,10 @@ android {
 
 dependencies {
     implementation project(':data')
+
+    //Dagger2
+    implementation "com.google.dagger:dagger-android-support:$daggerLibVersionUpper"
+    implementation "com.google.dagger:dagger:$daggerLibVersionUpper"
+    kapt "com.google.dagger:dagger-compiler:$daggerLibVersion"
+    kapt "com.google.dagger:dagger-android-processor:$daggerLibVersion"
 }
