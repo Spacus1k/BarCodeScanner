@@ -5,19 +5,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewManager
 import androidx.fragment.app.Fragment
-import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_main.*
 import ru.shpak.presentation.R
 import ru.shpak.presentation.ScanActivity
-import ru.shpak.presentation.utils.replaceFragment
+import ru.shpak.presentation.utils.addFragment
 import ru.shpak.presentation.utils.startNewActivity
 
 class MainFragment : Fragment(), View.OnClickListener {
 
     companion object {
-        const val MAIN_FRAGMENT_TAG = "MainFragment"
         fun newInstance() = MainFragment()
     }
 
@@ -60,11 +57,10 @@ class MainFragment : Fragment(), View.OnClickListener {
 
     private fun openHistoryFragment() {
         activity?.let {
-            replaceFragment(
+            addFragment(
                 it.supportFragmentManager,
                 R.id.fragment_container,
-                HistoryFragment.newInstance(),
-                HistoryFragment.HISTORY_FRAGMENT_TAG,
+                HistoryFragment.newInstance()
             )
         }
     }

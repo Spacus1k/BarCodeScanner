@@ -4,6 +4,4 @@ import dagger.Module
 
 @Module
 interface MainFragmentModule {
-
-
 }

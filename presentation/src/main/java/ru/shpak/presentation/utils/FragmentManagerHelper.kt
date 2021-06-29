@@ -3,20 +3,17 @@ package ru.shpak.presentation.utils
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 
-fun replaceFragment(
+fun addFragment(
     fragmentManager: FragmentManager,
     containerViewId: Int,
     fragment: Fragment,
-    //TODO fix this arguments`
-    tag: String = "",
     isAddToBackStack: Boolean = true
 ) {
-    with(fragmentManager.beginTransaction()) {
-        replace(containerViewId, fragment, tag)
+    val transaction = fragmentManager
+        .beginTransaction()
+        .add(containerViewId, fragment, fragment.tag)
 
-        if (isAddToBackStack) {
-            addToBackStack(fragment.tag)
-        }
-        commit()
-    }
+    if (isAddToBackStack) transaction.addToBackStack(fragment.tag)
+
+    transaction.commit()
 }

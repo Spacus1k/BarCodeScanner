@@ -7,10 +7,9 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.Delay
 import ru.shpak.domain.Timer
 import ru.shpak.domain.TimerImpl
+import javax.inject.Inject
 
-class SplashViewModel : ViewModel() {
-
-    private val timer: Timer = TimerImpl()
+class SplashViewModel @Inject constructor(private val timer: Timer): ViewModel() {
 
     private val _iconId = MutableLiveData<@DrawableRes Int>()
     val iconId: LiveData<Int> get() = _iconId

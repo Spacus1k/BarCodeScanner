@@ -13,7 +13,6 @@ import javax.inject.Inject
 class HistoryFragment : DaggerFragment(R.layout.fragment_history) {
 
     companion object {
-        const val HISTORY_FRAGMENT_TAG = "HistoryFragment"
         fun newInstance() = HistoryFragment()
     }
 

@@ -17,12 +17,10 @@ class App : DaggerApplication(){
 
     override fun applicationInjector(): ApplicationComponent = appComponent
 
-
     override fun onCreate() {
         super.onCreate()
         initDatabase()
     }
-
 
     private fun initDatabase() {
         appDatabase = InitDatabaseAsyncTask(applicationContext).execute().get()

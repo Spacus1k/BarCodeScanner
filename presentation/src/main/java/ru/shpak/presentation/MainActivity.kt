@@ -1,10 +1,10 @@
 package ru.shpak.presentation
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import ru.shpak.presentation.base.BaseActivity
+import ru.shpak.presentation.fragments.HistoryFragment
 import ru.shpak.presentation.fragments.MainFragment
-import ru.shpak.presentation.utils.replaceFragment
+import ru.shpak.presentation.utils.addFragment
 
 class MainActivity : BaseActivity(R.layout.activity_main) {
 
@@ -14,21 +14,16 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
     }
 
     private fun openMainFragment() {
-        supportFragmentManager.beginTransaction()
-            .add(
-                R.id.fragment_container,
-                MainFragment.newInstance(),
-                MainFragment.MAIN_FRAGMENT_TAG
-            ).commit()
+        addFragment(
+            this.supportFragmentManager,
+            R.id.fragment_container,
+            MainFragment.newInstance()
+        )
     }
 
-    //TODO fix this function
-    override fun onBackPressed() {
-        val isMainFragmentOpened =
-            supportFragmentManager.findFragmentByTag(MainFragment.MAIN_FRAGMENT_TAG) != null
-        if (isMainFragmentOpened) {
-            finish()
-            super.onBackPressed()
-        }
+    override fun onBackPressed() = if (supportFragmentManager.fragments.size == 1) {
+        finishAndRemoveTask()
+    } else {
+        super.onBackPressed()
     }
 }
