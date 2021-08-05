@@ -22,7 +22,7 @@ class MainViewModel @Inject constructor(private val interactor: BarCodeInteracto
         interactor.removeBarCode(id)
     }
 
-    private fun loadBarCodes() {
+     fun loadBarCodes() {
         barCodes.value = interactor.getBarCodeList()
     }
 }

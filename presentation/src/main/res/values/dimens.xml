@@ -2,10 +2,21 @@
 
 <resources>
     <dimen name="default_action_bar_text_size">30sp</dimen>
-    <dimen name="default_action_bar_height">40dp</dimen>
     <dimen name="default_button_text_size">20sp</dimen>
     <dimen name="default_barcode_item_data_text_size">12sp</dimen>
     <dimen name="default_barcode_item_text_size">20sp</dimen>
+    <dimen name="settings_text_size">30sp</dimen>
+
     <dimen name="button_box_padding">16dp</dimen>
-    <dimen name="barcode_item_padding">16dp</dimen>
+    <dimen name="barcode_item_padding">5dp</dimen>
+
+    <dimen name="barcode_item_margin">5dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="barcode_item_corner_radius">10dp</dimen>
+
+    <dimen name="coordinator_layout_height_">75dp</dimen>
+    <dimen name="action_bar_height">40dp</dimen>
+    <dimen name="settings_layout_margin">15dp</dimen>
+
 </resources>

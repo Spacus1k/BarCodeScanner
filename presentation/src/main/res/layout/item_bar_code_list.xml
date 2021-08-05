@@ -1,23 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="@dimen/barcode_item_padding">
+    android:layout_margin="@dimen/barcode_item_margin">
 
-    <TextView
-        android:id="@+id/barCode"
-        style="@style/TextAppearance.AppCompat.Title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="monospace"
-        android:textSize="@dimen/default_barcode_item_text_size" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/barcode_item_padding">
 
-    <TextView
-        android:id="@+id/date"
-        style="@style/TextAppearance.AppCompat.Title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="monospace"
-        android:textSize="@dimen/default_barcode_item_data_text_size" />
-</LinearLayout>
+        <TextView
+            android:id="@+id/barCode"
+            style="@style/BarCodeItemText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/default_barcode_item_text_size"
+            tools:text="result scan text" />
+
+        <TextView
+            android:id="@+id/date"
+            style="@style/BarCodeItemText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/default_barcode_item_data_text_size"
+            tools:text="date 00.00.0000, time 00:00" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
