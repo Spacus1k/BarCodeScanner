@@ -16,4 +16,7 @@ interface BarCodeDao {
 
     @Delete
     fun delete(barCodeData: BarCodeData)
+
+    @Query("DELETE FROM barcodeData")
+    fun deleteAll()
 }

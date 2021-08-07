@@ -4,6 +4,7 @@ import android.os.Bundle
 import ru.shpak.presentation.base.BaseActivity
 import ru.shpak.presentation.fragments.MainFragment
 import ru.shpak.presentation.utils.addFragment
+import ru.shpak.presentation.viewModels.SharedPrefViewModel
 
 class MainActivity : BaseActivity(R.layout.activity_main) {
 
@@ -22,7 +23,6 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
             MainFragment.newInstance()
         )
     }
-
 
     //TODO rewrite this function
     override fun onBackPressed() = if (supportFragmentManager.fragments.size == 1) {

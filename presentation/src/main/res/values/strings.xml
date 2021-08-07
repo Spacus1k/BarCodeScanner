@@ -10,4 +10,12 @@
     <string name="settings_dark_mode">Dark Mode</string>
     <string name="settings_delete_scan_history">Delete scan history</string>
     <string name="delete_button">Delete</string>
+    <string name="scan_activity_info">The scanner requires access to the camera</string>
+    <string name="dialog_question_delete_all">Are you sure you want to delete scan history?</string>
+    <string name="dialog_yes">Yes</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="attention">Attention!</string>
+    <string name="delete_successful">Scan history deleted successfully</string>
+    <string name="delete_canceled">Deletion canceled</string>
+
 </resources>

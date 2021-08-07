@@ -1,12 +1,11 @@
-package ru.shpak.presentation
+package ru.shpak.presentation.viewModels
 
 import androidx.annotation.DrawableRes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.Delay
 import ru.shpak.domain.Timer
-import ru.shpak.domain.TimerImpl
+import ru.shpak.presentation.R
 import javax.inject.Inject
 
 class SplashViewModel @Inject constructor(private val timer: Timer): ViewModel() {

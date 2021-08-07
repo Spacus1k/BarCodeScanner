@@ -9,9 +9,10 @@ import com.google.zxing.Result
 import me.dm7.barcodescanner.zxing.ZXingScannerView
 import ru.shpak.presentation.base.BaseActivity
 import ru.shpak.presentation.utils.showToast
+import ru.shpak.presentation.viewModels.MainViewModel
 import javax.inject.Inject
 
-class ScanActivity : BaseActivity(), ZXingScannerView.ResultHandler {
+class ScanActivity : BaseActivity(R.layout.activity_scan), ZXingScannerView.ResultHandler {
 
     @Inject
     lateinit var scanViewModel: MainViewModel
@@ -25,7 +26,6 @@ class ScanActivity : BaseActivity(), ZXingScannerView.ResultHandler {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         scannerView = ZXingScannerView(this)
-        setContentView(scannerView)
     }
 
     override fun onResume() {
@@ -57,6 +57,7 @@ class ScanActivity : BaseActivity(), ZXingScannerView.ResultHandler {
 
     private fun checkPermissions() {
         if (isCameraPermissionGranted()) {
+            setContentView(scannerView)
             startScanning()
         } else {
             requestCameraPermission()
@@ -76,6 +77,4 @@ class ScanActivity : BaseActivity(), ZXingScannerView.ResultHandler {
             REQUEST_CODE
         )
     }
-
-    //TODO handle situation when camera permission was turned down
 }

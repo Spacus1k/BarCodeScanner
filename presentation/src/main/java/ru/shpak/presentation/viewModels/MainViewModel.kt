@@ -1,4 +1,4 @@
-package ru.shpak.presentation
+package ru.shpak.presentation.viewModels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -24,5 +24,9 @@ class MainViewModel @Inject constructor(private val interactor: BarCodeInteracto
 
      fun loadBarCodes() {
         barCodes.value = interactor.getBarCodeList()
+    }
+
+    fun removeAllBarCodes(){
+        interactor.removeAllBarCodes()
     }
 }

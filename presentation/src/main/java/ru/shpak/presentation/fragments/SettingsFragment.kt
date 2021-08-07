@@ -8,12 +8,17 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.fragment_settings.*
+import ru.shpak.domain.BarCodeInteractorImpl
+import ru.shpak.presentation.viewModels.MainViewModel
 import ru.shpak.presentation.R
-import ru.shpak.presentation.SharedPrefViewModel
+import ru.shpak.presentation.viewModels.SharedPrefViewModel
 
 class SettingsFragment : Fragment() {
 
+
+    //TODO implement dagger
     private val sharedPrefViewModel = SharedPrefViewModel()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,8 +30,18 @@ class SettingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initThemeListener()
         checkDarkMode()
+        initButtons()
+        initThemeListener()
+    }
+
+    private fun initButtons() {
+        delete_button.setOnClickListener {
+            val dialogFragment = ConfirmationDialogFragment()
+          activity?.let{
+              dialogFragment.show(it.supportFragmentManager, "myDialog")
+          }
+        }
     }
 
     private fun initThemeListener() {

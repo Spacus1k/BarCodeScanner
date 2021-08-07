@@ -2,7 +2,6 @@
 <resources>
 
     <style name="ToolbarText" parent="@style/Base.TextAppearance.AppCompat.Title">
-        
         <item name="android:textSize">35sp</item>
     </style>
 
@@ -12,6 +11,5 @@
 
     <style name="SettingsText">
         <item name="android:textSize">25sp</item>
-
     </style>
 </resources>

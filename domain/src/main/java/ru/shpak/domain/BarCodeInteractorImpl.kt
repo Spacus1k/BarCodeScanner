@@ -2,6 +2,7 @@ package ru.shpak.domain
 
 import ru.shpak.data.asyncTask.GetBarCodesAsyncTask
 import ru.shpak.data.asyncTask.InsertInDatabaseAsyncTask
+import ru.shpak.data.asyncTask.RemoveAllBarCodesAsyncTask
 import ru.shpak.data.asyncTask.RemoveBarCodeAsyncTask
 import ru.shpak.data.model.BarCodeData
 import ru.shpak.domain.model.BarCode
@@ -25,5 +26,9 @@ class BarCodeInteractorImpl @Inject constructor() : BarCodeInteractor {
     override fun getBarCodeList(): List<BarCode> {
         val listBarCodes = GetBarCodesAsyncTask().start()
         return listBarCodes.toListBarCode().sortedByDescending { it.date }
+    }
+
+    override fun removeAllBarCodes() {
+        RemoveAllBarCodesAsyncTask().start()
     }
 }

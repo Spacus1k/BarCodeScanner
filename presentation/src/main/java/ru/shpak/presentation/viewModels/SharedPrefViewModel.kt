@@ -1,4 +1,4 @@
-package ru.shpak.presentation
+package ru.shpak.presentation.viewModels
 
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel

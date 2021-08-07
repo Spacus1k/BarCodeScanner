@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_splash.*
 import ru.shpak.presentation.base.BaseActivity
+import ru.shpak.presentation.viewModels.SplashViewModel
 import javax.inject.Inject
 
 class SplashActivity : BaseActivity(R.layout.activity_splash) {

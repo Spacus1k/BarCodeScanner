@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_history.*
-import ru.shpak.presentation.MainViewModel
+import ru.shpak.presentation.viewModels.MainViewModel
 import ru.shpak.presentation.R
 import ru.shpak.presentation.ScanActivity
 import ru.shpak.presentation.utils.startNewActivity
@@ -29,7 +29,6 @@ class HistoryFragment : DaggerFragment(R.layout.fragment_history), View.OnClickL
         super.onViewCreated(view, savedInstanceState)
         initBarCodeRecycleView()
         initObservers()
-        initButtons()
     }
 
     override fun onStart() {
@@ -48,10 +47,6 @@ class HistoryFragment : DaggerFragment(R.layout.fragment_history), View.OnClickL
             layoutManager = LinearLayoutManager(context)
             adapter = this@HistoryFragment.adapter
         }
-    }
-
-    private fun initButtons() {
-        //bottomNavigationView.setOnNavigationItemSelectedListener(this);
     }
 
     override fun onClick(view: View?) {
