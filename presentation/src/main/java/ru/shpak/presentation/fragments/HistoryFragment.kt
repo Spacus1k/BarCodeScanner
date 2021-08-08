@@ -1,21 +1,16 @@
 package ru.shpak.presentation.fragments
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_history.*
-import ru.shpak.presentation.viewModels.MainViewModel
 import ru.shpak.presentation.R
-import ru.shpak.presentation.ScanActivity
-import ru.shpak.presentation.utils.startNewActivity
 import ru.shpak.presentation.view.BarCodeAdapter
+import ru.shpak.presentation.viewModels.MainViewModel
 import javax.inject.Inject
 
-class HistoryFragment : DaggerFragment(R.layout.fragment_history), View.OnClickListener {
+class HistoryFragment : DaggerFragment(R.layout.fragment_history){
 
     companion object {
         fun newInstance() = HistoryFragment()
@@ -46,24 +41,6 @@ class HistoryFragment : DaggerFragment(R.layout.fragment_history), View.OnClickL
         with(barCodes) {
             layoutManager = LinearLayoutManager(context)
             adapter = this@HistoryFragment.adapter
-        }
-    }
-
-    override fun onClick(view: View?) {
-        view?.let {
-            when (view.id) {
-                R.id.float_scan_button -> startScanActivity()
-            }
-        }
-    }
-
-    private fun startScanActivity() {
-        activity?.let {
-            startNewActivity(
-                it.applicationContext,
-                ScanActivity::class.java,
-                arrayOf(Intent.FLAG_ACTIVITY_NEW_TASK)
-            )
         }
     }
 }

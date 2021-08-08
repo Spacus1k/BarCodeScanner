@@ -1,6 +1,5 @@
 package ru.shpak.domain
 
-import ru.shpak.data.asyncTask.RemoveAllBarCodesAsyncTask
 import ru.shpak.domain.model.BarCode
 
 /**
@@ -25,9 +24,8 @@ interface BarCodeInteractor {
 
     fun getBarCodeList(): List<BarCode>
 
-    //TODO check description
     /**
-     * The method removes all records from the table
+     * The method removes all bar codes
      *  */
     fun removeAllBarCodes()
 }

@@ -13,7 +13,10 @@ import javax.inject.Inject
 
 class ConfirmationDialogFragment : DaggerDialogFragment() {
 
-    //TODO implement dagger
+    companion object {
+        fun newInstance() = ConfirmationDialogFragment()
+    }
+
     @Inject
     lateinit var viewModel: MainViewModel
 

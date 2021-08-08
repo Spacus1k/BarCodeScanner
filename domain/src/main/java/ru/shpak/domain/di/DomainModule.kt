@@ -3,6 +3,6 @@ package ru.shpak.domain.di
 import dagger.Module
 
 @Module(
-    includes = [InteractorModule::class, TimerModule::class]
+    includes = [BarCodeInteractorModule::class, TimerModule::class, SharedPrefInteractorModule::class]
 )
 interface DomainModule

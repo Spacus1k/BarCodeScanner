@@ -6,7 +6,7 @@ import ru.shpak.domain.BarCodeInteractor
 import ru.shpak.domain.BarCodeInteractorImpl
 
 @Module
-interface InteractorModule {
+interface BarCodeInteractorModule {
 
     @Binds
     fun bindBarCodeInteractor(barCodeInteractorImpl: BarCodeInteractorImpl) : BarCodeInteractor

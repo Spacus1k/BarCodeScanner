@@ -8,25 +8,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_main.*
 import ru.shpak.presentation.R
 import ru.shpak.presentation.ScanActivity
 import ru.shpak.presentation.utils.addFragment
 import ru.shpak.presentation.utils.startNewActivity
+import ru.shpak.presentation.viewModels.SharedPrefViewModel
+import javax.inject.Inject
 
-class MainFragment : Fragment(), View.OnClickListener,
+class MainFragment : DaggerFragment(R.layout.fragment_main),
     BottomNavigationView.OnNavigationItemSelectedListener {
 
     companion object {
         fun newInstance() = MainFragment()
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,16 +32,11 @@ class MainFragment : Fragment(), View.OnClickListener,
     }
 
     private fun initButtons() {
-        float_scan_button.setOnClickListener(this)
-        bottomNavigationView.setOnNavigationItemSelectedListener(this);
-    }
-
-    override fun onClick(view: View?) {
-        view?.let {
-            when (view.id) {
-                R.id.float_scan_button -> startScanActivity()
-            }
+        float_scan_button.setOnClickListener{
+            startScanActivity()
         }
+        //Todo change
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
     }
 
     private fun startScanActivity() {
@@ -60,7 +50,6 @@ class MainFragment : Fragment(), View.OnClickListener,
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-
         when (item.itemId) {
             R.id.history -> openHistoryFragment()
             R.id.settings -> openSettingsFragment()
@@ -70,14 +59,14 @@ class MainFragment : Fragment(), View.OnClickListener,
 
     private fun openHistoryFragment() {
         activity?.supportFragmentManager?.let {
-            addFragment(it, R.id.content_container, HistoryFragment())
+            addFragment(it, R.id.content_container, HistoryFragment.newInstance(), false)
         }
         toolbar.title = getString(R.string.toolbar_text_history)
     }
 
     private fun openSettingsFragment() {
         activity?.supportFragmentManager?.let {
-            addFragment(it, R.id.content_container, SettingsFragment())
+            addFragment(it, R.id.content_container, SettingsFragment.newInstance(), false)
         }
         toolbar.title = getString(R.string.toolbar_text_settings)
     }

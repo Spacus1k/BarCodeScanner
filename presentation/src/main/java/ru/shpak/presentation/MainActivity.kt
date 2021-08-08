@@ -5,30 +5,31 @@ import ru.shpak.presentation.base.BaseActivity
 import ru.shpak.presentation.fragments.MainFragment
 import ru.shpak.presentation.utils.addFragment
 import ru.shpak.presentation.viewModels.SharedPrefViewModel
+import javax.inject.Inject
 
 class MainActivity : BaseActivity(R.layout.activity_main) {
 
-    private val sharedPrefViewModel = SharedPrefViewModel()
+    @Inject
+    lateinit var mainViewModel: SharedPrefViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        sharedPrefViewModel.loadThemeMode(this)
         super.onCreate(savedInstanceState)
         openMainFragment()
+        mainViewModel.loadThemeMode(this)
     }
 
     private fun openMainFragment() {
         addFragment(
             this.supportFragmentManager,
             R.id.fragment_container,
-            MainFragment.newInstance()
+            MainFragment.newInstance(),
+            false
         )
     }
 
     //TODO rewrite this function
-    override fun onBackPressed() = if (supportFragmentManager.fragments.size == 1) {
-        finishAndRemoveTask()
-    } else {
+    override fun onBackPressed() {
         super.onBackPressed()
+        finish()
     }
-
 }

@@ -14,9 +14,11 @@ import ru.shpak.presentation.di.component.SplashSubComponent
 import ru.shpak.presentation.fragments.ConfirmationDialogFragment
 import ru.shpak.presentation.fragments.HistoryFragment
 import ru.shpak.presentation.fragments.MainFragment
+import ru.shpak.presentation.fragments.SettingsFragment
 import ru.shpak.presentation.fragments.di.component.DialogSubComponent
 import ru.shpak.presentation.fragments.di.component.HistorySubComponent
 import ru.shpak.presentation.fragments.di.component.MainFragmentSubComponent
+import ru.shpak.presentation.fragments.di.component.SettingsFragmentSubComponent
 
 @Module(
     subcomponents = [
@@ -25,7 +27,8 @@ import ru.shpak.presentation.fragments.di.component.MainFragmentSubComponent
         HistorySubComponent::class,
         MainFragmentSubComponent::class,
         SplashSubComponent::class,
-        DialogSubComponent::class
+        DialogSubComponent::class,
+        SettingsFragmentSubComponent::class
     ]
 )
 interface PresentationModule {
@@ -59,4 +62,10 @@ interface PresentationModule {
     @IntoMap
     @ClassKey(ConfirmationDialogFragment::class)
     fun bindsConfirmationDialogFragment(factory: DialogSubComponent.Factory): AndroidInjector.Factory<*>
+
+
+    @Binds
+    @IntoMap
+    @ClassKey(SettingsFragment::class)
+    fun bindsSettingsFragment(factory: SettingsFragmentSubComponent.Factory): AndroidInjector.Factory<*>
 }
