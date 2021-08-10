@@ -28,6 +28,7 @@ class HistoryFragment : DaggerFragment(R.layout.fragment_history){
 
     override fun onStart() {
         super.onStart()
+
         viewModel.loadBarCodes()
     }
 

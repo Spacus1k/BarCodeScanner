@@ -10,22 +10,22 @@ interface BarCodeInteractor {
     /**
      * @param scanResult - the bar code which will be added
      * */
-    fun addBarCode(scanResult: String)
+    suspend fun addBarCode(scanResult: String)
 
     /**
      *@param id - the identifier of the barcode which will be deleted
      *  */
 
-    fun removeBarCode(id: Long)
+    suspend fun removeBarCode(id: Long)
 
     /**
      * The method  returns bar code list
      *  */
 
-    fun getBarCodeList(): List<BarCode>
+     suspend fun getBarCodeList(): List<BarCode>
 
     /**
      * The method removes all bar codes
      *  */
-    fun removeAllBarCodes()
+    suspend fun removeAllBarCodes()
 }

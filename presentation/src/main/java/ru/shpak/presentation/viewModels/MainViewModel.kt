@@ -2,6 +2,8 @@ package ru.shpak.presentation.viewModels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 import ru.shpak.domain.BarCodeInteractor
 import ru.shpak.domain.model.BarCode
 import javax.inject.Inject
@@ -11,22 +13,32 @@ class MainViewModel @Inject constructor(private val interactor: BarCodeInteracto
     val barCodes = MutableLiveData<List<BarCode>>()
 
     init {
-        loadBarCodes()
+        viewModelScope.launch {
+            loadBarCodes()
+        }
     }
 
     fun addBarCode(scanResult: String) {
-        interactor.addBarCode(scanResult)
+        viewModelScope.launch {
+            interactor.addBarCode(scanResult)
+        }
     }
 
     private fun removeBarCode(id: Long) {
-        interactor.removeBarCode(id)
+        viewModelScope.launch {
+            interactor.removeBarCode(id)
+        }
     }
 
-     fun loadBarCodes() {
-        barCodes.value = interactor.getBarCodeList()
+    fun loadBarCodes() {
+        viewModelScope.launch {
+            barCodes.value = interactor.getBarCodeList()
+        }
     }
 
-    fun removeAllBarCodes(){
-        interactor.removeAllBarCodes()
+    fun removeAllBarCodes() {
+        viewModelScope.launch {
+            interactor.removeAllBarCodes()
+        }
     }
 }
