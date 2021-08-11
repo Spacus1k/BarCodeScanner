@@ -11,14 +11,8 @@ import ru.shpak.presentation.SplashActivity
 import ru.shpak.presentation.di.component.MainSubComponent
 import ru.shpak.presentation.di.component.ScanSubComponent
 import ru.shpak.presentation.di.component.SplashSubComponent
-import ru.shpak.presentation.fragments.ConfirmationDialogFragment
-import ru.shpak.presentation.fragments.HistoryFragment
-import ru.shpak.presentation.fragments.MainFragment
-import ru.shpak.presentation.fragments.SettingsFragment
-import ru.shpak.presentation.fragments.di.component.DialogSubComponent
-import ru.shpak.presentation.fragments.di.component.HistorySubComponent
-import ru.shpak.presentation.fragments.di.component.MainFragmentSubComponent
-import ru.shpak.presentation.fragments.di.component.SettingsFragmentSubComponent
+import ru.shpak.presentation.fragments.*
+import ru.shpak.presentation.fragments.di.component.*
 
 @Module(
     subcomponents = [
@@ -28,7 +22,9 @@ import ru.shpak.presentation.fragments.di.component.SettingsFragmentSubComponent
         MainFragmentSubComponent::class,
         SplashSubComponent::class,
         DialogSubComponent::class,
-        SettingsFragmentSubComponent::class
+        SettingsFragmentSubComponent::class,
+        ClickedItemFragmentSubComponent::class
+
     ]
 )
 interface PresentationModule {
@@ -63,9 +59,13 @@ interface PresentationModule {
     @ClassKey(ConfirmationDialogFragment::class)
     fun bindsConfirmationDialogFragment(factory: DialogSubComponent.Factory): AndroidInjector.Factory<*>
 
-
     @Binds
     @IntoMap
     @ClassKey(SettingsFragment::class)
     fun bindsSettingsFragment(factory: SettingsFragmentSubComponent.Factory): AndroidInjector.Factory<*>
+
+    @Binds
+    @IntoMap
+    @ClassKey(ClickedItemFragment::class)
+    fun bindsClickedItemFragment(factory: ClickedItemFragmentSubComponent.Factory): AndroidInjector.Factory<*>
 }

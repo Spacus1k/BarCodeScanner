@@ -15,13 +15,11 @@ interface BarCodeInteractor {
     /**
      *@param id - the identifier of the barcode which will be deleted
      *  */
-
     suspend fun removeBarCode(id: Long)
 
     /**
      * The method  returns bar code list
      *  */
-
      suspend fun getBarCodeList(): List<BarCode>
 
     /**

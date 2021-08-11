@@ -33,7 +33,6 @@
     <View
         android:id="@+id/anchor"
         android:layout_width="match_parent"
-        android:background="@color/backgroundColor"
         android:layout_height="51dp"
         app:layout_constraintBottom_toBottomOf="parent" />
 

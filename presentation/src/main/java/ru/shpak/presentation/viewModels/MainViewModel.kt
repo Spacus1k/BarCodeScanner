@@ -24,7 +24,7 @@ class MainViewModel @Inject constructor(private val interactor: BarCodeInteracto
         }
     }
 
-    private fun removeBarCode(id: Long) {
+    fun removeBarCode(id: Long) {
         viewModelScope.launch {
             interactor.removeBarCode(id)
         }
@@ -42,3 +42,6 @@ class MainViewModel @Inject constructor(private val interactor: BarCodeInteracto
         }
     }
 }
+
+//Todo add search
+// add scan mode selection

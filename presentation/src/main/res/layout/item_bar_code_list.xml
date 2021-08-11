@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/barcode_item_margin">
+    android:layout_margin="@dimen/barcode_item_margin"
+    android:foreground="?attr/selectableItemBackgroundBorderless">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,7 +17,9 @@
             style="@style/BarCodeItemText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/default_barcode_item_text_size"
+            android:textSize="@dimen/text_size_barcode_item_"
+            android:maxLines="1"
+            android:ellipsize="end"
             tools:text="result scan text" />
 
         <TextView
@@ -24,7 +27,7 @@
             style="@style/BarCodeItemText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/default_barcode_item_data_text_size"
+            android:textSize="@dimen/text_size_barcode_item_date"
             tools:text="date 00.00.0000, time 00:00" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

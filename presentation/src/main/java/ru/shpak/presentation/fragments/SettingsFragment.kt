@@ -29,7 +29,7 @@ class SettingsFragment : DaggerFragment(R.layout.fragment_settings) {
         delete_button.setOnClickListener {
             val dialogFragment = ConfirmationDialogFragment.newInstance()
             activity?.let {
-                dialogFragment.show(it.supportFragmentManager, "myDialog")
+                dialogFragment.show(it.supportFragmentManager, "confirmationDialog")
             }
         }
     }
@@ -38,7 +38,6 @@ class SettingsFragment : DaggerFragment(R.layout.fragment_settings) {
         dark_mode_check_box.setOnClickListener {
             activity?.let {
                 when (dark_mode_check_box.isChecked) {
-                    // TODO solve problem with double screen
                     true -> sharedPrefViewModel.setThemeMode(it, Theme.DARK)
                     false -> sharedPrefViewModel.setThemeMode(it, Theme.LIGHT)
                 }
@@ -46,7 +45,6 @@ class SettingsFragment : DaggerFragment(R.layout.fragment_settings) {
         }
     }
 
-    //TODO
     private fun checkDarkMode() {
         activity?.let {
             if (sharedPrefViewModel.checkThemeMode(it) == Theme.DARK) {

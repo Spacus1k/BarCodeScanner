@@ -21,11 +21,8 @@ class SharedPrefInteractorImpl @Inject constructor() : SharedPrefInteractor {
     }
 
     override fun loadThemeMode(activity: FragmentActivity) {
-        val sharedPreferences = activity.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
-        when (sharedPreferences.getInt(KEY, Theme.LIGHT.mode)) {
-            Theme.DARK.mode -> setThemeMode(activity, Theme.DARK)
-            Theme.LIGHT.mode -> setThemeMode(activity, Theme.LIGHT)
-        }
+        val theme  = checkThemeMode(activity)
+        setThemeMode(activity, theme)
     }
 
     override fun checkThemeMode(activity: FragmentActivity): Theme {

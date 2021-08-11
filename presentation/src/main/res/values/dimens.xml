@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-    <dimen name="default_action_bar_text_size">30sp</dimen>
-    <dimen name="default_button_text_size">20sp</dimen>
-    <dimen name="default_barcode_item_data_text_size">12sp</dimen>
-    <dimen name="default_barcode_item_text_size">20sp</dimen>
+    <dimen name="text_size_action_bar">30sp</dimen>
+    <dimen name="text_size_button">20sp</dimen>
+    <dimen name="text_size_barcode_item_date">12sp</dimen>
+    <dimen name="text_size_barcode_item_">20sp</dimen>
     <dimen name="settings_text_size">30sp</dimen>
 
     <dimen name="button_box_padding">16dp</dimen>
     <dimen name="barcode_item_padding">5dp</dimen>
+    <dimen name="padding_layout_clicked_item">15dp</dimen>
 
     <dimen name="barcode_item_margin">5dp</dimen>
     <dimen name="fab_margin">16dp</dimen>

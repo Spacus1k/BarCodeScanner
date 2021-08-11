@@ -11,7 +11,7 @@ import ru.shpak.presentation.utils.showToast
 import ru.shpak.presentation.viewModels.MainViewModel
 import javax.inject.Inject
 
-class ConfirmationDialogFragment : DaggerDialogFragment() {
+class ConfirmationDialogFragment: DaggerDialogFragment() {
 
     companion object {
         fun newInstance() = ConfirmationDialogFragment()

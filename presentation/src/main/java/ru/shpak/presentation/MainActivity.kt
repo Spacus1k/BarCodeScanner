@@ -21,15 +21,16 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
     private fun openMainFragment() {
         addFragment(
             this.supportFragmentManager,
-            R.id.fragment_container,
+            R.id.activity_fragment_container,
             MainFragment.newInstance(),
             false
         )
     }
 
     //TODO rewrite this function
-    override fun onBackPressed() {
+    override fun onBackPressed() = if (supportFragmentManager.fragments.size == 1) {
+        finishAndRemoveTask()
+    } else {
         super.onBackPressed()
-        finish()
     }
 }

@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:text="@string/scan_activity_info"
         android:textColor="@color/textColor"
-        android:textSize="@dimen/default_button_text_size"
+        android:textSize="@dimen/text_size_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -14,12 +14,13 @@ class BarCodeInteractorImpl @Inject constructor() : BarCodeInteractor {
         val barCode = BarCodeData(barCode = scanResult)
         withContext(Dispatchers.Default) {
             appDatabase?.barCodeDao()?.insert(barCode)
-
         }
     }
 
     override suspend fun removeBarCode(id: Long) {
-        // TODO: will be implemented later
+        withContext(Dispatchers.Default) {
+            appDatabase?.barCodeDao()?.delete(id)
+        }
     }
 
     override suspend fun getBarCodeList(): List<BarCode> {

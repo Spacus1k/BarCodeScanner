@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/backgroundColor"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:titleTextAppearance="@style/ToolbarText"
+            app:titleTextColor="@color/textColor"
+            app:navigationIcon="@drawable/ic_arrow_back_24"
+            tools:title="Toolbar Name" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_layout_clicked_item"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout">
+
+        <TextView
+            android:id="@+id/scan_result"
+            style="@style/BarCodeItemText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_barcode_item_"
+            tools:text="result scan text" />
+
+        <TextView
+            android:id="@+id/date"
+            style="@style/BarCodeItemText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_barcode_item_date"
+            tools:text="date 00.00.0000, time 00:00" />
+
+        <Button
+            android:id="@+id/button_delete_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/buttonBackgroundTint"
+            android:text="@string/delete_button"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

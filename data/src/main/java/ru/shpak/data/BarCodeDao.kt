@@ -14,8 +14,8 @@ interface BarCodeDao {
     @Insert
     fun insert(barCodeData: BarCodeData)
 
-    @Delete
-    fun delete(barCodeData: BarCodeData)
+    @Query("DELETE FROM barcodeData WHERE id = :id")
+    fun delete(id: Long)
 
     @Query("DELETE FROM barcodeData")
     fun deleteAll()
