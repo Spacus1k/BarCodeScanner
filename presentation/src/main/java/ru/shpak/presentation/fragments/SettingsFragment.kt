@@ -2,17 +2,21 @@ package ru.shpak.presentation.fragments
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.FragmentActivity
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_settings.*
+import ru.shpak.domain.utils.ScanMode
 import ru.shpak.domain.utils.Theme
 import ru.shpak.presentation.R
 import ru.shpak.presentation.viewModels.SharedPrefViewModel
 import javax.inject.Inject
 
-class SettingsFragment : DaggerFragment(R.layout.fragment_settings) {
+class SettingsFragment : DaggerFragment(R.layout.fragment_settings), View.OnClickListener {
 
     companion object {
         fun newInstance() = SettingsFragment()
+
+        private const val TAG = "confirmationDialog"
     }
 
     @Inject
@@ -20,36 +24,55 @@ class SettingsFragment : DaggerFragment(R.layout.fragment_settings) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        checkDarkMode()
         initButtons()
-        initThemeListener()
+        initSwitch()
+        checkPrefModes()
+    }
+
+    override fun onClick(view: View?) {
+        activity?.let {
+            when (view) {
+                delete_button -> showDialog(it)
+                dark_mode_check_box -> checkBoxAction(it, dark_mode_check_box.isChecked)
+            }
+        }
     }
 
     private fun initButtons() {
-        delete_button.setOnClickListener {
-            val dialogFragment = ConfirmationDialogFragment.newInstance()
-            activity?.let {
-                dialogFragment.show(it.supportFragmentManager, "confirmationDialog")
+        delete_button.setOnClickListener(this)
+        dark_mode_check_box.setOnClickListener(this)
+    }
+
+    private fun initSwitch() {
+        activity?.let { activity ->
+            switch_material.setOnCheckedChangeListener { _, isChecked ->
+                sharedPrefViewModel.saveScanMode(
+                    activity.application,
+                    if (isChecked) ScanMode.NONSTOP else ScanMode.STOP
+                )
             }
         }
     }
 
-    private fun initThemeListener() {
-        dark_mode_check_box.setOnClickListener {
-            activity?.let {
-                when (dark_mode_check_box.isChecked) {
-                    true -> sharedPrefViewModel.setThemeMode(it, Theme.DARK)
-                    false -> sharedPrefViewModel.setThemeMode(it, Theme.LIGHT)
-                }
-            }
-        }
-    }
-
-    private fun checkDarkMode() {
+    private fun checkPrefModes() {
         activity?.let {
-            if (sharedPrefViewModel.checkThemeMode(it) == Theme.DARK) {
-                dark_mode_check_box.isChecked = true
-            }
+
+            switch_material.isChecked =
+                sharedPrefViewModel.getScanMode(it.application) == ScanMode.NONSTOP
+
+            dark_mode_check_box.isChecked = sharedPrefViewModel.checkThemeMode(it) == Theme.DARK
         }
+    }
+
+    private fun checkBoxAction(activity: FragmentActivity, checked: Boolean) {
+        sharedPrefViewModel.setThemeMode(
+            activity,
+            if (checked) Theme.DARK else Theme.LIGHT
+        )
+    }
+
+    private fun showDialog(activity: FragmentActivity) {
+        val dialogFragment = ConfirmationDialogFragment.newInstance()
+        dialogFragment.show(activity.supportFragmentManager, TAG)
     }
 }

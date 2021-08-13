@@ -3,34 +3,33 @@ package ru.shpak.presentation
 import android.os.Bundle
 import ru.shpak.presentation.base.BaseActivity
 import ru.shpak.presentation.fragments.MainFragment
-import ru.shpak.presentation.utils.addFragment
+import ru.shpak.presentation.utils.Router
 import ru.shpak.presentation.viewModels.SharedPrefViewModel
 import javax.inject.Inject
 
 class MainActivity : BaseActivity(R.layout.activity_main) {
+
+    companion object {
+        private const val MIN_NUMBER_OF_FRAGMENTS_IN_BACKSTACK = 2
+    }
 
     @Inject
     lateinit var mainViewModel: SharedPrefViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        openMainFragment()
-             mainViewModel.loadThemeMode(this)
-    }
+        mainViewModel.loadThemeMode(this)
 
-    private fun openMainFragment() {
-        addFragment(
-            this.supportFragmentManager,
-            R.id.activity_fragment_container,
+        Router(this, R.id.activity_fragment_container).openFragment(
             MainFragment.newInstance(),
-            false
+            isAddToBackStack = false
         )
     }
 
-    //TODO rewrite this function
-    override fun onBackPressed() = if (supportFragmentManager.fragments.size == 1) {
-        finishAndRemoveTask()
-    } else {
-        super.onBackPressed()
-    }
+    override fun onBackPressed() =
+        if (supportFragmentManager.fragments.size == MIN_NUMBER_OF_FRAGMENTS_IN_BACKSTACK) {
+            finishAffinity()
+        } else {
+            super.onBackPressed()
+        }
 }

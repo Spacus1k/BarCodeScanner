@@ -6,38 +6,40 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_history.*
 import kotlinx.android.synthetic.main.fragment_main.*
+import ru.shpak.domain.model.BarCode
 import ru.shpak.presentation.R
-import ru.shpak.presentation.utils.addFragment
+import ru.shpak.presentation.utils.OnItemClickListener
+import ru.shpak.presentation.utils.Router
 import ru.shpak.presentation.view.BarCodeAdapter
 import ru.shpak.presentation.viewModels.MainViewModel
 import javax.inject.Inject
 
-class HistoryFragment : DaggerFragment(R.layout.fragment_history),
-    BarCodeAdapter.OnItemClickListener {
+class HistoryFragment : DaggerFragment(R.layout.fragment_history) {
 
     companion object {
         fun newInstance() = HistoryFragment()
-        const val KEY = "clicked_item"
     }
 
     @Inject
     lateinit var viewModel: MainViewModel
-    private val adapter = BarCodeAdapter(this)
+    private val itemClickListener = object : OnItemClickListener {
+        override fun onItemClick(clickedItem: BarCode) {
+            openClickedItemFragment(ClickedBarCodeFragment.newInstance(clickedItem))
+        }
+    }
+    private val adapter = BarCodeAdapter(itemClickListener)
+    private var router: Router? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initBarCodeRecycleView()
         initObservers()
+        router = activity?.let { Router(it, R.id.activity_fragment_container) }
     }
 
-    override fun onItemClick(position: Int) {
-        val clickedItem = adapter.getItem(position)
-        val bundle = Bundle().apply {
-            putParcelable(KEY, clickedItem)
-        }
-        val fragment = ClickedItemFragment.newInstance()
-        fragment.arguments = bundle
-        openClickedItemFragment(fragment)
+    override fun onResume() {
+        super.onResume()
+        viewModel.loadBarCodes()
     }
 
     private fun initObservers() {
@@ -54,13 +56,10 @@ class HistoryFragment : DaggerFragment(R.layout.fragment_history),
         }
     }
 
-    private fun openClickedItemFragment(fragment: ClickedItemFragment) {
-        activity?.let {
-            addFragment(
-                it.supportFragmentManager, R.id.activity_fragment_container,
-                fragment,
-                true
-            )
+    private fun openClickedItemFragment(fragment: ClickedBarCodeFragment) {
+        router?.let {
+            it.removeFragment(this)
+            it.openFragment(fragment)
         }
     }
 }

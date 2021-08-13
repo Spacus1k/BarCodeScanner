@@ -15,6 +15,8 @@ class ConfirmationDialogFragment: DaggerDialogFragment() {
 
     companion object {
         fun newInstance() = ConfirmationDialogFragment()
+
+        private const val NULL_ACTIVITY_ERROR_MESSAGE = "Activity cannot be null"
     }
 
     @Inject
@@ -23,7 +25,7 @@ class ConfirmationDialogFragment: DaggerDialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             createDeleteConfirmationDialog(it)
-        } ?: throw IllegalStateException("Activity cannot be null")
+        } ?: throw IllegalStateException(NULL_ACTIVITY_ERROR_MESSAGE)
     }
 
     private fun createDeleteConfirmationDialog(activity: FragmentActivity): Dialog {

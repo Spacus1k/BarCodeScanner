@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="backgroundColor">#FFFF</color>
+    <color name="backgroundSubToolbar">#EFEEEE</color>
     <color name="textColor">#000000</color>
     <color name="buttonBackgroundTint">#4C4A4A</color>
 </resources>

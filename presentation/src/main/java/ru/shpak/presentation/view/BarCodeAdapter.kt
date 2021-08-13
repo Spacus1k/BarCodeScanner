@@ -3,6 +3,7 @@ package ru.shpak.presentation.view
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.shpak.domain.model.BarCode
+import ru.shpak.presentation.utils.OnItemClickListener
 
 class BarCodeAdapter(
     private val itemClickListener: OnItemClickListener
@@ -27,10 +28,5 @@ class BarCodeAdapter(
 
     fun getItem(position: Int):BarCode{
         return list[position]
-    }
-
-    interface OnItemClickListener {
-
-        fun onItemClick(position: Int)
     }
 }

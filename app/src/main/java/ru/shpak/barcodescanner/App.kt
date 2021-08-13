@@ -26,16 +26,8 @@ class App : DaggerApplication() {
         }
     }
 
-    private suspend fun initDatabase() {
-        appDatabase = coroutineScope {
-            // TODO: add migration in database
-
-            //         Room.databaseBuilder(
-//           context,
-//            AppDatabase::class.java,
-//            AppDatabase.NAME_DATABASE
-//        )
-//            .build()
+    private fun initDatabase() {
+        appDatabase =
             Room.databaseBuilder(
                 applicationContext,
                 AppDatabase::class.java,
@@ -43,6 +35,5 @@ class App : DaggerApplication() {
             )
                 .fallbackToDestructiveMigration()
                 .build()
-        }
     }
 }

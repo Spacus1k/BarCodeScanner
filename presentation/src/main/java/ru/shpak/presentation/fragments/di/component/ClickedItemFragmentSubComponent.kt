@@ -2,12 +2,11 @@ package ru.shpak.presentation.fragments.di.component
 
 import dagger.Subcomponent
 import dagger.android.AndroidInjector
-import ru.shpak.presentation.fragments.ClickedItemFragment
-import ru.shpak.presentation.fragments.di.module.ClickedItemFragmentModule
+import ru.shpak.presentation.fragments.ClickedBarCodeFragment
 
-@Subcomponent(modules = [ClickedItemFragmentModule::class])
-interface ClickedItemFragmentSubComponent : AndroidInjector<ClickedItemFragment>{
+@Subcomponent
+interface ClickedItemFragmentSubComponent : AndroidInjector<ClickedBarCodeFragment>{
 
     @Subcomponent.Factory
-    interface Factory : AndroidInjector.Factory<ClickedItemFragment>
+    interface Factory : AndroidInjector.Factory<ClickedBarCodeFragment>
 }

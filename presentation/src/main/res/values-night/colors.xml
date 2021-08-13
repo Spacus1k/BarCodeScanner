@@ -11,5 +11,6 @@
     <color name="backgroundColor">#302E2E</color>
     <color name="textColor">#FFFFFF</color>
     <color name="buttonBackgroundTint">#4C4A4A</color>
+    <color name="backgroundSubToolbar">#4C4A4A</color>
 
 </resources>

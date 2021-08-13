@@ -9,20 +9,16 @@ import kotlinx.android.synthetic.main.item_bar_code_list.view.*
 import ru.shpak.domain.model.BarCode
 import ru.shpak.domain.utils.dateToString
 import ru.shpak.presentation.R
+import ru.shpak.presentation.utils.OnItemClickListener
 
 class BarCodeViewHolder private constructor(
-    itemView: View, private val itemClickListener: BarCodeAdapter.OnItemClickListener
-) :
-    RecyclerView.ViewHolder(itemView), View.OnClickListener {
-
-    init {
-        itemView.setOnClickListener(this)
-    }
+    itemView: View, private val itemClickListener: OnItemClickListener
+) : RecyclerView.ViewHolder(itemView) {
 
     companion object {
         fun createViewHolder(
             parent: ViewGroup,
-            clickListener: BarCodeAdapter.OnItemClickListener
+            clickListener: OnItemClickListener
         ): BarCodeViewHolder {
 
             return BarCodeViewHolder(
@@ -40,14 +36,12 @@ class BarCodeViewHolder private constructor(
     private val barCodeView: TextView = itemView.barCode
     private val dateView: TextView = itemView.date
 
-    override fun onClick(v: View?) {
-        if (absoluteAdapterPosition != RecyclerView.NO_POSITION) {
-            itemClickListener.onItemClick(absoluteAdapterPosition)
-        }
-    }
-
     fun bind(barCode: BarCode) {
         barCodeView.text = barCode.barCode
         dateView.text = dateToString(barCode.date)
+
+        itemView.setOnClickListener {
+            itemClickListener.onItemClick(barCode)
+        }
     }
 }

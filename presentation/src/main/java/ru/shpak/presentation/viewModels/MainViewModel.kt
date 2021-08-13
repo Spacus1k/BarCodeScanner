@@ -13,20 +13,18 @@ class MainViewModel @Inject constructor(private val interactor: BarCodeInteracto
     val barCodes = MutableLiveData<List<BarCode>>()
 
     init {
+        loadBarCodes()
+    }
+
+    fun addBarCode(barCodeValue: String) {
         viewModelScope.launch {
-            loadBarCodes()
+            interactor.addBarCode(barCodeValue)
         }
     }
 
-    fun addBarCode(scanResult: String) {
+    fun removeBarCodeById(id: Long) {
         viewModelScope.launch {
-            interactor.addBarCode(scanResult)
-        }
-    }
-
-    fun removeBarCode(id: Long) {
-        viewModelScope.launch {
-            interactor.removeBarCode(id)
+            interactor.removeBarCodeById(id)
         }
     }
 
@@ -42,6 +40,3 @@ class MainViewModel @Inject constructor(private val interactor: BarCodeInteracto
         }
     }
 }
-
-//Todo add search
-// add scan mode selection

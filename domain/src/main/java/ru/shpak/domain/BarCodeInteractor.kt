@@ -8,22 +8,19 @@ import ru.shpak.domain.model.BarCode
 interface BarCodeInteractor {
 
     /**
-     * @param scanResult - the bar code which will be added
+     * @param barCodeValue - the bar code which will be added
      * */
-    suspend fun addBarCode(scanResult: String)
+    suspend fun addBarCode(barCodeValue: String)
 
     /**
      *@param id - the identifier of the barcode which will be deleted
      *  */
-    suspend fun removeBarCode(id: Long)
+    suspend fun removeBarCodeById(id: Long)
 
     /**
      * The method  returns bar code list
      *  */
-     suspend fun getBarCodeList(): List<BarCode>
+    suspend fun getBarCodeList(): List<BarCode>
 
-    /**
-     * The method removes all bar codes
-     *  */
     suspend fun removeAllBarCodes()
 }

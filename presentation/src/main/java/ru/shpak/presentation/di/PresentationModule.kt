@@ -8,7 +8,7 @@ import dagger.multibindings.IntoMap
 import ru.shpak.presentation.MainActivity
 import ru.shpak.presentation.ScanActivity
 import ru.shpak.presentation.SplashActivity
-import ru.shpak.presentation.di.component.MainSubComponent
+import ru.shpak.presentation.di.component.MainActivityComponent
 import ru.shpak.presentation.di.component.ScanSubComponent
 import ru.shpak.presentation.di.component.SplashSubComponent
 import ru.shpak.presentation.fragments.*
@@ -16,7 +16,7 @@ import ru.shpak.presentation.fragments.di.component.*
 
 @Module(
     subcomponents = [
-        MainSubComponent::class,
+        MainActivityComponent::class,
         ScanSubComponent::class,
         HistorySubComponent::class,
         MainFragmentSubComponent::class,
@@ -24,7 +24,6 @@ import ru.shpak.presentation.fragments.di.component.*
         DialogSubComponent::class,
         SettingsFragmentSubComponent::class,
         ClickedItemFragmentSubComponent::class
-
     ]
 )
 interface PresentationModule {
@@ -32,7 +31,7 @@ interface PresentationModule {
     @Binds
     @IntoMap
     @ClassKey(MainActivity::class)
-    fun bindsMainActivityFactory(factory: MainSubComponent.Factory): AndroidInjector.Factory<*>
+    fun bindsMainActivityFactory(factory: MainActivityComponent.Factory): AndroidInjector.Factory<*>
 
     @Binds
     @IntoMap
@@ -66,6 +65,6 @@ interface PresentationModule {
 
     @Binds
     @IntoMap
-    @ClassKey(ClickedItemFragment::class)
+    @ClassKey(ClickedBarCodeFragment::class)
     fun bindsClickedItemFragment(factory: ClickedItemFragmentSubComponent.Factory): AndroidInjector.Factory<*>
 }

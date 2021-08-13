@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/barcode_item_margin"
-    android:foreground="?attr/selectableItemBackgroundBorderless">
+    android:foreground="?attr/selectableItemBackgroundBorderless"
+    android:splitMotionEvents="false">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,9 +18,9 @@
             style="@style/BarCodeItemText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_barcode_item_"
-            android:maxLines="1"
             android:ellipsize="end"
+            android:maxLines="1"
+            android:textSize="@dimen/text_size_barcode_item"
             tools:text="result scan text" />
 
         <TextView

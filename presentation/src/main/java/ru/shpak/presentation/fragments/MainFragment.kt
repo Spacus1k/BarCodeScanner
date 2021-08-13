@@ -9,34 +9,43 @@ import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_main.*
 import ru.shpak.presentation.R
 import ru.shpak.presentation.ScanActivity
-import ru.shpak.presentation.utils.addFragment
+import ru.shpak.presentation.utils.Router
 import ru.shpak.presentation.utils.startNewActivity
 
-class MainFragment: DaggerFragment(R.layout.fragment_main),
+class MainFragment : DaggerFragment(R.layout.fragment_main),
     NavigationBarView.OnItemSelectedListener {
 
     companion object {
         fun newInstance() = MainFragment()
     }
 
+    private var router:Router? = null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initButtons()
-        bottomNavigationView.background = null
-        anchor.background = null
-        openHistoryFragment()
+        router = activity?.let { Router(it, R.id.content_container) }
+        router?.openFragment(HistoryFragment.newInstance())
+        setFragmentTitle(HistoryFragment::class.java.simpleName)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.history -> openHistoryFragment()
-            R.id.settings -> openSettingsFragment()
+            R.id.history -> {
+                router?.openFragment(HistoryFragment.newInstance(), isAddToBackStack = false)
+                setFragmentTitle(HistoryFragment::class.java.simpleName)
+            }
+
+            R.id.settings -> {
+                router?.openFragment(SettingsFragment.newInstance(), isAddToBackStack = false)
+                setFragmentTitle(SettingsFragment::class.java.simpleName)
+            }
         }
         return true
     }
 
     private fun initButtons() {
-        float_scan_button.setOnClickListener{
+        float_scan_button.setOnClickListener {
             startScanActivity()
         }
         bottomNavigationView.setOnItemSelectedListener(this)
@@ -51,18 +60,13 @@ class MainFragment: DaggerFragment(R.layout.fragment_main),
             )
         }
     }
-
-    private fun openHistoryFragment() {
-        activity?.supportFragmentManager?.let {
-            addFragment(it, R.id.content_container, HistoryFragment.newInstance(), false)
-        }
-        toolbar.title = getString(R.string.toolbar_text_history)
-    }
-
-    private fun openSettingsFragment() {
-        activity?.supportFragmentManager?.let {
-            addFragment(it, R.id.content_container, SettingsFragment.newInstance(), false)
-        }
-        toolbar.title = getString(R.string.toolbar_text_settings)
+    private fun setFragmentTitle(fragmentName: String) {
+        toolbar.title = getString(
+            when (fragmentName) {
+                HistoryFragment::class.java.simpleName -> R.string.toolbar_text_history
+                SettingsFragment::class.java.simpleName -> R.string.toolbar_text_settings
+                else -> return
+            }
+        )
     }
 }

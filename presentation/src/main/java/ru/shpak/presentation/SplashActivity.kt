@@ -11,7 +11,7 @@ import javax.inject.Inject
 class SplashActivity : BaseActivity(R.layout.activity_splash) {
 
     companion object {
-        private const val SPLASH_SCREEN_SHOW_TIME = 500L
+        private const val SPLASH_SCREEN_SHOW_TIME = 2000L
     }
     @Inject
     lateinit var viewModel: SplashViewModel
