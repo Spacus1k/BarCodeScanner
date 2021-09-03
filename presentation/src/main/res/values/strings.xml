@@ -1,9 +1,28 @@
 <resources>
     <string name="app_name">presentation</string>
-    <string name="text_main_activity">BarCodeScanner</string>
-    <string name="button_history">History</string>
     <string name="name_app">Barcode Scanner</string>
     <string name="scan_button">Scan</string>
-    <string name="text_history_activity">History</string>
+    <string name="text_history">History</string>
     <string name="message_after_scanning">Code scanned</string>
+    <string name="item_menu_settings">Settings</string>
+    <string name="toolbar_text_history">Scan History</string>
+    <string name="toolbar_text_settings">Settings</string>
+    <string name="settings_dark_mode">Dark Mode</string>
+    <string name="settings_delete_scan_history">Delete scan history</string>
+    <string name="continuous_scanning">Continuous scanning</string>
+    <string name="delete_button">Delete</string>
+    <string name="scan_activity_info">The scanner requires access to the camera</string>
+    <string name="dialog_question_delete_all">Are you sure you want to delete scan history?</string>
+    <string name="dialog_yes">Yes</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="attention">Attention!</string>
+    <string name="delete_successful">Scan history deleted successfully</string>
+    <string name="delete_canceled">Deletion canceled</string>
+    <string name="text_copy">Copy</string>
+    <string name="text_share">Share</string>
+    <string name="search_on_the_internet">Search on the Internet</string>
+    <string name="copied_to_clipboard">Copied to clipboard</string>
+    <string name="uri">http://www.google.com/#q</string>
+    <string name="error">Error</string>
+    <string name="delete_successfully">Delete successfully</string>
 </resources>

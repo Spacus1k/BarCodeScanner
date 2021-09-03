@@ -1,29 +1,45 @@
 package ru.shpak.domain
 
-import ru.shpak.data.asyncTask.GetBarCodesAsyncTask
-import ru.shpak.data.asyncTask.InsertInDatabaseAsyncTask
-import ru.shpak.data.asyncTask.RemoveBarCodeAsyncTask
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import ru.shpak.data.appDatabase
 import ru.shpak.data.model.BarCodeData
 import ru.shpak.domain.model.BarCode
-import ru.shpak.domain.utils.start
 import ru.shpak.domain.utils.toListBarCode
 import javax.inject.Inject
 
-class BarCodeInteractorImpl @Inject constructor() : BarCodeInteractor {
+class BarCodeInteractorImpl @Inject constructor() : BarCodeInteractor, CoroutineDispatcherProvider {
 
-    override fun addBarCode(scanResult: String) {
-        InsertInDatabaseAsyncTask(
-            BarCodeData(barCode = scanResult)
-        )
-            .start()
+    override suspend fun addBarCode(barCodeValue: String) {
+        val barCode = BarCodeData(barCode = barCodeValue)
+        withContext(getCoroutineDispatcher()) {
+            appDatabase?.barCodeDao()?.insert(barCode)
+        }
     }
 
-    override fun removeBarCode(id: Long) {
-        RemoveBarCodeAsyncTask(id).start()
+    override suspend fun removeBarCodeById(id: Long) {
+        withContext(getCoroutineDispatcher()) {
+            appDatabase?.barCodeDao()?.delete(id)
+        }
     }
 
-    override fun getBarCodeList(): List<BarCode> {
-        val listBarCodes = GetBarCodesAsyncTask().start()
+    override suspend fun getBarCodeList(): List<BarCode> {
+        val listBarCodes = withContext(getCoroutineDispatcher()) {
+            appDatabase?.barCodeDao()?.getAll() ?: emptyList()
+        }
         return listBarCodes.toListBarCode().sortedByDescending { it.date }
     }
+
+    override suspend fun removeAllBarCodes() {
+        withContext(getCoroutineDispatcher()) {
+            appDatabase?.barCodeDao()?.deleteAll()
+        }
+    }
+
+    override fun getCoroutineDispatcher(): CoroutineDispatcher {
+        return Dispatchers.Default
+    }
 }
+
+

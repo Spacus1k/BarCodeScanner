@@ -1,31 +1,33 @@
 package ru.shpak.presentation
 
-import android.content.pm.PackageManager
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import com.google.zxing.Result
 import me.dm7.barcodescanner.zxing.ZXingScannerView
+import ru.shpak.domain.utils.ScanMode
 import ru.shpak.presentation.base.BaseActivity
-import ru.shpak.presentation.utils.showToast
+import ru.shpak.presentation.utils.*
+import ru.shpak.presentation.viewModels.MainViewModel
+import ru.shpak.presentation.viewModels.SharedPrefViewModel
 import javax.inject.Inject
 
-class ScanActivity : BaseActivity(), ZXingScannerView.ResultHandler {
+class ScanActivity : BaseActivity(R.layout.activity_scan), ZXingScannerView.ResultHandler {
 
     @Inject
     lateinit var scanViewModel: MainViewModel
 
-    private var scannerView: ZXingScannerView? = null
+    @Inject
+    lateinit var sharedPrefViewModel: SharedPrefViewModel
 
-    private companion object {
-        private const val REQUEST_CODE = 100
-    }
+    @Inject
+    lateinit var permissionManager: PermissionManager
+
+    private var scannerView: ZXingScannerView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         scannerView = ZXingScannerView(this)
-        setContentView(scannerView)
     }
 
     override fun onResume() {
@@ -42,10 +44,14 @@ class ScanActivity : BaseActivity(), ZXingScannerView.ResultHandler {
         showToast(
             applicationContext,
             getString(R.string.message_after_scanning),
-            Toast.LENGTH_LONG
+            Toast.LENGTH_SHORT
         )
         scanViewModel.addBarCode(scanResult.text)
-        startScanning()
+
+        when (sharedPrefViewModel.getScanMode(application)) {
+            ScanMode.STOP -> startMainActivity()
+            ScanMode.NONSTOP -> startScanning()
+        }
     }
 
     private fun startScanning() {
@@ -56,26 +62,19 @@ class ScanActivity : BaseActivity(), ZXingScannerView.ResultHandler {
     }
 
     private fun checkPermissions() {
-        if (isCameraPermissionGranted()) {
+        if (permissionManager.isCameraPermissionGranted(this)) {
+            setContentView(scannerView)
             startScanning()
         } else {
-            requestCameraPermission()
+            permissionManager.requestCameraPermission(this)
         }
     }
 
-    private fun isCameraPermissionGranted(): Boolean =
-        ContextCompat.checkSelfPermission(
-            this,
-            android.Manifest.permission.CAMERA
-        ) == PackageManager.PERMISSION_GRANTED
-
-    private fun requestCameraPermission() {
-        ActivityCompat.requestPermissions(
-            this,
-            arrayOf(android.Manifest.permission.CAMERA),
-            REQUEST_CODE
+    private fun startMainActivity() {
+        startNewActivity(
+            applicationContext,
+            MainActivity::class.java,
+            arrayOf(Intent.FLAG_ACTIVITY_NEW_TASK)
         )
     }
-
-    //TODO handle situation when camera permission was turned down
 }

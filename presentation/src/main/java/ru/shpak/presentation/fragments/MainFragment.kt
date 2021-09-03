@@ -2,47 +2,53 @@ package ru.shpak.presentation.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import com.google.android.material.navigation.NavigationBarView
+import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_main.*
 import ru.shpak.presentation.R
 import ru.shpak.presentation.ScanActivity
-import ru.shpak.presentation.utils.addFragment
+import ru.shpak.presentation.utils.Router
 import ru.shpak.presentation.utils.startNewActivity
 
-class MainFragment : Fragment(), View.OnClickListener {
+class MainFragment : DaggerFragment(R.layout.fragment_main),
+    NavigationBarView.OnItemSelectedListener {
 
     companion object {
         fun newInstance() = MainFragment()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_main, container, false)
-    }
+    private var router:Router? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initButtons()
+        router = activity?.let { Router(it, R.id.content_container) }
+        router?.openFragment(HistoryFragment.newInstance())
+        setFragmentTitle(HistoryFragment::class.java.simpleName)
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.history -> {
+                router?.openFragment(HistoryFragment.newInstance(), isAddToBackStack = false)
+                setFragmentTitle(HistoryFragment::class.java.simpleName)
+            }
+
+            R.id.settings -> {
+                router?.openFragment(SettingsFragment.newInstance(), isAddToBackStack = false)
+                setFragmentTitle(SettingsFragment::class.java.simpleName)
+            }
+        }
+        return true
     }
 
     private fun initButtons() {
-        scanButton.setOnClickListener(this)
-        historyButton.setOnClickListener(this)
-    }
-
-    override fun onClick(view: View?) {
-        view?.let {
-            when (view.id) {
-                R.id.historyButton -> openHistoryFragment()
-                R.id.scanButton -> startScanActivity()
-            }
+        float_scan_button.setOnClickListener {
+            startScanActivity()
         }
+        bottomNavigationView.setOnItemSelectedListener(this)
     }
 
     private fun startScanActivity() {
@@ -54,14 +60,13 @@ class MainFragment : Fragment(), View.OnClickListener {
             )
         }
     }
-
-    private fun openHistoryFragment() {
-        activity?.let {
-            addFragment(
-                it.supportFragmentManager,
-                R.id.fragment_container,
-                HistoryFragment.newInstance()
-            )
-        }
+    private fun setFragmentTitle(fragmentName: String) {
+        toolbar.title = getString(
+            when (fragmentName) {
+                HistoryFragment::class.java.simpleName -> R.string.toolbar_text_history
+                SettingsFragment::class.java.simpleName -> R.string.toolbar_text_settings
+                else -> return
+            }
+        )
     }
 }

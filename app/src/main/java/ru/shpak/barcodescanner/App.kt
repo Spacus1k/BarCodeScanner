@@ -1,12 +1,14 @@
 package ru.shpak.barcodescanner
 
+import androidx.room.Room
 import dagger.android.DaggerApplication
+import kotlinx.coroutines.*
 import ru.shpak.barcodescanner.di.ApplicationComponent
 import ru.shpak.barcodescanner.di.DaggerApplicationComponent
+import ru.shpak.data.AppDatabase
 import ru.shpak.data.appDatabase
-import ru.shpak.data.asyncTask.InitDatabaseAsyncTask
 
-class App : DaggerApplication(){
+class App : DaggerApplication() {
 
     private val appComponent by lazy {
         DaggerApplicationComponent
@@ -19,10 +21,19 @@ class App : DaggerApplication(){
 
     override fun onCreate() {
         super.onCreate()
-        initDatabase()
+        CoroutineScope(Dispatchers.Main).launch {
+            initDatabase()
+        }
     }
 
     private fun initDatabase() {
-        appDatabase = InitDatabaseAsyncTask(applicationContext).execute().get()
+        appDatabase =
+            Room.databaseBuilder(
+                applicationContext,
+                AppDatabase::class.java,
+                AppDatabase.NAME_DATABASE
+            )
+                .fallbackToDestructiveMigration()
+                .build()
     }
 }

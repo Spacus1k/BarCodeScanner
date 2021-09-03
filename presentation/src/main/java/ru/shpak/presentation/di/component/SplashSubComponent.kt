@@ -2,12 +2,10 @@ package ru.shpak.presentation.di.component
 
 import dagger.Subcomponent
 import dagger.android.AndroidInjector
-import ru.shpak.presentation.MainActivity
 import ru.shpak.presentation.SplashActivity
-import ru.shpak.presentation.di.module.MainActivityModule
-import ru.shpak.presentation.di.module.SplashActivityModule
+import ru.shpak.presentation.di.module.ViewModelModule
 
-@Subcomponent(modules = [SplashActivityModule::class])
+@Subcomponent(modules = [ViewModelModule::class])
 interface SplashSubComponent : AndroidInjector<SplashActivity> {
 
     @Subcomponent.Factory
