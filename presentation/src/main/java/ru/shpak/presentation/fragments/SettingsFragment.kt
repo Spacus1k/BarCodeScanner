@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.FragmentActivity
 import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.fragment_settings.*
 import ru.shpak.domain.utils.ScanMode
 import ru.shpak.domain.utils.Theme
 import ru.shpak.presentation.R
+import ru.shpak.presentation.databinding.FragmentSettingsBinding
 import ru.shpak.presentation.viewModels.SharedPrefViewModel
 import javax.inject.Inject
 
@@ -22,30 +22,39 @@ class SettingsFragment : DaggerFragment(R.layout.fragment_settings), View.OnClic
     @Inject
     lateinit var sharedPrefViewModel: SharedPrefViewModel
 
+    private var _binding: FragmentSettingsBinding? = null
+    private val binding get() = _binding!!
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        _binding = FragmentSettingsBinding.bind(view)
         initButtons()
         initSwitch()
         checkPrefModes()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     override fun onClick(view: View?) {
         activity?.let {
             when (view) {
-                delete_button -> showDialog(it)
-                dark_mode_check_box -> checkBoxAction(it, dark_mode_check_box.isChecked)
+                binding.deleteButton -> showDialog(it)
+                binding.darkModeCheckBox -> checkBoxAction(it, binding.darkModeCheckBox.isChecked)
             }
         }
     }
 
     private fun initButtons() {
-        delete_button.setOnClickListener(this)
-        dark_mode_check_box.setOnClickListener(this)
+        binding.deleteButton.setOnClickListener(this)
+        binding.darkModeCheckBox.setOnClickListener(this)
     }
 
     private fun initSwitch() {
         activity?.let { activity ->
-            switch_material.setOnCheckedChangeListener { _, isChecked ->
+            binding.switchMaterial.setOnCheckedChangeListener { _, isChecked ->
                 sharedPrefViewModel.saveScanMode(
                     activity.application,
                     if (isChecked) ScanMode.NONSTOP else ScanMode.STOP
@@ -56,11 +65,10 @@ class SettingsFragment : DaggerFragment(R.layout.fragment_settings), View.OnClic
 
     private fun checkPrefModes() {
         activity?.let {
-
-            switch_material.isChecked =
+            binding.switchMaterial.isChecked =
                 sharedPrefViewModel.getScanMode(it.application) == ScanMode.NONSTOP
 
-            dark_mode_check_box.isChecked = sharedPrefViewModel.checkThemeMode(it) == Theme.DARK
+            binding.darkModeCheckBox.isChecked = sharedPrefViewModel.checkThemeMode(it) == Theme.DARK
         }
     }
 

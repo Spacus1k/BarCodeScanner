@@ -6,9 +6,9 @@ import android.view.MenuItem
 import android.view.View
 import com.google.android.material.navigation.NavigationBarView
 import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.fragment_main.*
 import ru.shpak.presentation.R
 import ru.shpak.presentation.ScanActivity
+import ru.shpak.presentation.databinding.FragmentMainBinding
 import ru.shpak.presentation.utils.Router
 import ru.shpak.presentation.utils.startNewActivity
 
@@ -19,14 +19,22 @@ class MainFragment : DaggerFragment(R.layout.fragment_main),
         fun newInstance() = MainFragment()
     }
 
-    private var router:Router? = null
+    private var router: Router? = null
+    private var _binding: FragmentMainBinding? = null
+    private val binding get() = _binding!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        _binding = FragmentMainBinding.bind(view)
         initButtons()
         router = activity?.let { Router(it, R.id.content_container) }
         router?.openFragment(HistoryFragment.newInstance())
         setFragmentTitle(HistoryFragment::class.java.simpleName)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -45,10 +53,10 @@ class MainFragment : DaggerFragment(R.layout.fragment_main),
     }
 
     private fun initButtons() {
-        float_scan_button.setOnClickListener {
+        binding.floatScanButton.setOnClickListener {
             startScanActivity()
         }
-        bottomNavigationView.setOnItemSelectedListener(this)
+        binding.bottomNavigationView.setOnItemSelectedListener(this)
     }
 
     private fun startScanActivity() {
@@ -60,8 +68,9 @@ class MainFragment : DaggerFragment(R.layout.fragment_main),
             )
         }
     }
+
     private fun setFragmentTitle(fragmentName: String) {
-        toolbar.title = getString(
+        binding.toolbar.title = getString(
             when (fragmentName) {
                 HistoryFragment::class.java.simpleName -> R.string.toolbar_text_history
                 SettingsFragment::class.java.simpleName -> R.string.toolbar_text_settings

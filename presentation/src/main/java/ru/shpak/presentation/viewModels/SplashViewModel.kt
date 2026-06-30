@@ -1,6 +1,5 @@
 package ru.shpak.presentation.viewModels
 
-import androidx.annotation.DrawableRes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,7 +9,7 @@ import javax.inject.Inject
 
 class SplashViewModel @Inject constructor(private val timer: Timer): ViewModel() {
 
-    private val _iconId = MutableLiveData<@DrawableRes Int>()
+    private val _iconId = MutableLiveData<Int>()
     val iconId: LiveData<Int> get() = _iconId
 
     private val _timerDone = MutableLiveData(false)

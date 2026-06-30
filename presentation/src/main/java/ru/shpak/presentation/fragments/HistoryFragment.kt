@@ -4,10 +4,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.fragment_history.*
-import kotlinx.android.synthetic.main.fragment_main.*
 import ru.shpak.domain.model.BarCode
 import ru.shpak.presentation.R
+import ru.shpak.presentation.databinding.FragmentHistoryBinding
 import ru.shpak.presentation.utils.OnItemClickListener
 import ru.shpak.presentation.utils.Router
 import ru.shpak.presentation.view.BarCodeAdapter
@@ -29,12 +28,20 @@ class HistoryFragment : DaggerFragment(R.layout.fragment_history) {
     }
     private val adapter = BarCodeAdapter(itemClickListener)
     private var router: Router? = null
+    private var _binding: FragmentHistoryBinding? = null
+    private val binding get() = _binding!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        _binding = FragmentHistoryBinding.bind(view)
         initBarCodeRecycleView()
         initObservers()
         router = activity?.let { Router(it, R.id.activity_fragment_container) }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onResume() {
@@ -49,7 +56,7 @@ class HistoryFragment : DaggerFragment(R.layout.fragment_history) {
     }
 
     private fun initBarCodeRecycleView() {
-        with(barCodes) {
+        with(binding.barCodes) {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
             adapter = this@HistoryFragment.adapter

@@ -8,10 +8,10 @@ import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.FragmentActivity
 import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.fragment_cliecked_item.*
 import ru.shpak.domain.model.BarCode
 import ru.shpak.domain.utils.dateToString
 import ru.shpak.presentation.R
+import ru.shpak.presentation.databinding.FragmentClieckedItemBinding
 import ru.shpak.presentation.utils.*
 import ru.shpak.presentation.viewModels.MainViewModel
 import javax.inject.Inject
@@ -29,6 +29,8 @@ class ClickedBarCodeFragment(private val barCode: BarCode) :
     @Inject
     lateinit var viewModel: MainViewModel
     private var router: Router? = null
+    private var _binding: FragmentClieckedItemBinding? = null
+    private val binding get() = _binding!!
 
     private val menuClickListener = Toolbar.OnMenuItemClickListener { item ->
         activity?.let {
@@ -50,20 +52,26 @@ class ClickedBarCodeFragment(private val barCode: BarCode) :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        _binding = FragmentClieckedItemBinding.bind(view)
         initTextView()
         initButtons()
         router = activity?.let { Router(it, R.id.activity_fragment_container) }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun initTextView() {
-        scan_result.text = barCode.barCode
-        date.text = dateToString(barCode.date)
+        binding.scanResult.text = barCode.barCode
+        binding.date.text = dateToString(barCode.date)
     }
 
     private fun initButtons() {
-        toolbar.setOnClickListener(clickListener)
-        search_button.setOnClickListener(clickListener)
-        toolbar.setOnMenuItemClickListener(menuClickListener)
+        binding.toolbar.setOnClickListener(clickListener)
+        binding.searchButton.setOnClickListener(clickListener)
+        binding.toolbar.setOnMenuItemClickListener(menuClickListener)
     }
 
     private fun deleteItem(barCode: BarCode) {
